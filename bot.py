@@ -33,7 +33,7 @@ class BAsics():
     @commands.command(pass_contex=True)
     async def invite(self, ctx):
         ': Invite me '
-        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=490166247003258890&scope=bot&permissions=2146958591')
+        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591')
 
     @commands.command()
     async def uptime(self,ctx):
