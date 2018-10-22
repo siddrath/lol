@@ -18,7 +18,7 @@ class BAsics():
     @commands.command()
     async def owner(self, ctx):
         ': Name of my creator'
-        await ctx.send('My owner is <@392337139309871106> ')
+        await ctx.send('My owner is <@411496838550781972> ')
         await ctx.message.delete()
 
     @commands.command()
@@ -33,7 +33,7 @@ class BAsics():
     @commands.command(pass_contex=True)
     async def invite(self, ctx):
         ': Invite me '
-        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=394080286461263873&scope=bot&permissions=1543687243')
+        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591')
 
     @commands.command()
     async def uptime(self,ctx):
@@ -291,7 +291,7 @@ async def code(ctx, command):
 
 @bot.command(hidden=True)
 async def reload(ctx, extension):
-    if ctx.author.id == 392337139309871106:
+    if ctx.author.id == 411496838550781972:
        try:
             bot.unload_extension(extension)
             bot.load_extension(extension)
@@ -302,35 +302,66 @@ async def reload(ctx, extension):
             await ctx.send("```No such extention exists```")
     else:
         await ctx.send("```You can't do it buddy you better know it```")
+        
+@bot.listen()
+async def on_member_join(member):
+    await member.send(f"{member.name}Welcome to {member.guild.name}")
+
 
 
 @bot.event
 async def on_command_error(ctx, err):
-    if ctx.guild.id == 394087011641851905:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 494725137476616202:
+
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+
+    if ctx.guild.id == 490190146843443201:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+
+    if ctx.guild.id == 453472827526479874:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+
+    if ctx.guild.id == 457729395122241537:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
     else:
         return
 
 
-@bot.event
-async def on_member_join(member):
-        if member.guild.id == 453472827526479874:
-            channel = member.guild.get_channel(485835315194363925)
-            await channel.edit(name=f'Member Count: {len(member.guild.members)}')
-
-
-@bot.event
-async def on_member_remove(member):
-    if member.guild.id == 453472827526479874:
-        channel = member.guild.get_channel(485835315194363925)
-        await channel.edit(name=f'Member Count: {len(member.guild.members)}')
-
 
 @bot.event
 async def on_message(msg):
-    if 'firebasic' in msg.content.lower():
-        await msg.channel.send('Yup I am here!!')
+    if 'gay' in msg.content.lower():
+        await msg.add_reaction(emoji= "😎")
+        await msg.add_reaction(emoji= "🎂")
+        await msg.add_reaction(emoji= "🎉")
+        await msg.add_reaction(emoji= "🎅")
     await bot.process_commands(msg)
+
+    if 'hi' in msg.content.lower():
+        await msg.add_reaction(emoji= "👻")
+        await msg.add_reaction(emoji= "👋")
+        await msg.add_reaction(emoji= "😎")
+        await bot.process_commands(msg)
+
+    if 'hey' in msg.content.lower():
+        await msg.add_reaction(emoji= "🙌")
+        await msg.add_reaction(emoji= "👋")
+        await msg.add_reaction(emoji= "😎")
+        await bot.process_commands(msg)
+
+    if 'hello' in msg.content.lower():
+        await msg.add_reaction(emoji= "🎃")
+        await msg.add_reaction(emoji= "👋")
+        await msg.add_reaction(emoji= "😎")
+        await bot.process_commands(msg)
+
+    if 'server' in msg.content.lower():
+        await msg.add_reaction(emoji= "💢")
+        await msg.add_reaction(emoji= "❔")
+        await bot.process_commands(msg)
+
+    else:
+        return
 
 
 
@@ -340,7 +371,7 @@ async def on_ready():
     bot.load_extension("fun")
     bot.load_extension("search")
     bot.load_extension('ExampleRepl')
-    options = ('help via f!help', 'to !👑!Fire Feathers!👑!#2636', f'on {len(bot.guilds)} servers')
+    options = ('help via p?help', 'to !꧁ Garry꧂#2508', f'on {len(bot.guilds)} servers')
     while True:
         await bot.change_presence(activity=discord.Streaming(name=random.choice(options), url='https://www.twitch.tv/cohhcarnage'))
         await asyncio.sleep(10)
