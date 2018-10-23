@@ -7,7 +7,7 @@ class BAfun():
         self.bot = bot
         
         
-     @bot.command()
+     @commands.command()
      async def neko(ctx):
          ''''sends cute dog pics'''
          r = requests.get("https://nekos.life/api/neko").json()
