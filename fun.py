@@ -76,7 +76,7 @@ class BAfun():
                 await ctx.send(f"""\U0001f3b1 Question by {ctx.author.name}: {question}```  Very doubtful```""")
           
     
-     @commands.command(name="pepel")
+    @commands.command(name="pepel")
     async def pepe(,self,ctx, user: discord.Member = None):
          """pepe!"""
          user = user or ctx.message.author
