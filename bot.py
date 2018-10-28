@@ -328,40 +328,7 @@ async def on_command_error(ctx, err):
 
 
 
-@bot.event
-async def on_message(msg):
-    if 'gay' in msg.content.lower():
-        await msg.add_reaction(emoji= "😎")
-        await msg.add_reaction(emoji= "🎂")
-        await msg.add_reaction(emoji= "🎉")
-        await msg.add_reaction(emoji= "🎅")
-    await bot.process_commands(msg)
 
-    if 'hi' in msg.content.lower():
-        await msg.add_reaction(emoji= "👻")
-        await msg.add_reaction(emoji= "👋")
-        await msg.add_reaction(emoji= "😎")
-        await bot.process_commands(msg)
-
-    if 'hey' in msg.content.lower():
-        await msg.add_reaction(emoji= "🙌")
-        await msg.add_reaction(emoji= "👋")
-        await msg.add_reaction(emoji= "😎")
-        await bot.process_commands(msg)
-
-    if 'hello' in msg.content.lower():
-        await msg.add_reaction(emoji= "🎃")
-        await msg.add_reaction(emoji= "👋")
-        await msg.add_reaction(emoji= "😎")
-        await bot.process_commands(msg)
-
-    if 'server' in msg.content.lower():
-        await msg.add_reaction(emoji= "💢")
-        await msg.add_reaction(emoji= "❔")
-        await bot.process_commands(msg)
-
-    else:
-        return
 
 
 
