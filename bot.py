@@ -414,6 +414,146 @@ async def pepe(ctx, user: discord.Member = None):
 
 
     await ctx.send(embed=embed)
+    
+
+@bot.command(pass_context=True)
+async def bite(ctx, member: discord.Member):
+    """bites  someone!"""
+    author = ctx.message.author.mention
+    mention = member.mention
+
+    bite = "**{0}bites you.{1}!**"
+
+    choices = ['https://cdn.discordapp.com/attachments/456701536912015361/466571069973856256/bite-HkutgeXob.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466571762339938304/bite-ry00lxmob.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466572007258193920/bite-H1_Jbemjb.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466572188372434964/bite-H1hige7sZ.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466572377233293322/bite-Hk1sxlQjZ.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466572552739880961/bite-rkakblmiZ.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466572804385669120/bite-BJXRmfr6-.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466573024078987284/bite-ry3pQGraW.gif']
+
+
+    image = random.choice(choices)
+
+    embed = discord.Embed(description=bite.format(author, mention), colour=discord.Colour(0xba4b5b))
+    embed.set_image(url=image)
+
+    await ctx.send(embed=embed)
+
+@bot.command(pass_context=True)
+async def cuddle(ctx, member: discord.Member):
+    """cuddle  someone!"""
+    author = ctx.message.author.mention
+    mention = member.mention
+
+    cuddle = "**cuddles you.{1}!**"
+
+    choices = ['https://cdn.discordapp.com/attachments/456701536912015361/466573538841591809/cuddle-SJn18IXP-.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466573996201082900/cuddle-r1s9RqB7G.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466574139805794306/cuddle-SJceIU7wZ.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466574279127859200/cuddle-r1XEOymib.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466574467070427156/cuddle-S1T91Att-.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466574644577697792/cuddle-BkZCSI7Pb.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466574850375548939/cuddle-Byd1IUmP-.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466575399862665216/cuddle-BkN0rIQDZ.gif']
+
+
+    image = random.choice(choices)
+
+    embed = discord.Embed(description=cuddle.format(author, mention), colour=discord.Colour(0xba4b5b))
+    embed.set_image(url=image)
+
+    await ctx.send(embed=embed)
+
+
+@bot.command(pass_context=True)
+async def pat(ctx, member: discord.Member):
+    """pat someone!"""
+    author = ctx.message.author.mention
+    mention = member.mention
+
+    pat = "**you have been patted .{1}!**"
+
+    choices = ['https://cdn.discordapp.com/attachments/456701536912015361/466577618771378176/pat-rktsca40-.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466577986209185812/pat-rkZbJAYKW.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466578464619626496/pat-SJva1kFv-.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466578677090484224/pat-BkJBQlckz.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466578825468182538/pat-H1s5hx0Bf.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466579159435706380/pat-rJMskkFvb.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466579338490544128/pat-rkBZkRttW.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466579500117917727/pat-Sk2FyQHpZ.gif']
+
+
+    image = random.choice(choices)
+
+    embed = discord.Embed(description=pat.format(author, mention), colour=discord.Colour(0xba4b5b))
+    embed.set_image(url=image)
+
+    await ctx.send(embed=embed)
+
+@bot.command(pass_context=True)
+async def kiss(ctx, member: discord.Member):
+    """kiss someone!"""
+    author = ctx.message.author.mention
+    mention = member.mention
+
+    kiss = "**  kissed you.{1}!**"
+
+    choices = ['https://cdn.discordapp.com/attachments/456701536912015361/466579840070582284/kiss-B1MJ2aODb.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466580423116324874/kiss-Hkt-nTOwW.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466581686591946763/kiss-r1VWnTuPW.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466582897755947017/kiss-BkUJNec1M.gif',
+               'https://cdn.discordapp.com/attachments/456701536912015361/466583102047780914/kiss-Sk1k3TdPW.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466583257341755392/kiss-BJv0o6uDZ.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466583404222087168/kiss-S1PCJWASf.gif'
+               'https://cdn.discordapp.com/attachments/456701536912015361/466583780736499712/kiss-SJ3dXCKtW.gif']
+
+
+    image = random.choice(choices)
+
+    embed = discord.Embed(description=kiss.format(author, mention), colour=discord.Colour(0xba4b5b))
+    embed.set_image(url=image)
+
+    await ctx.send(embed=embed)
+    
+
+ 
+@bot.command(pass_context=True, name='wikipedia', aliases=['wiki', 'w'])
+async def wikipedia(ctx, *, query: str):
+    """
+    Get information from Wikipedia
+    """
+    try:
+        url = 'https://en.wikipedia.org/w/api.php?'
+        payload = {}
+        payload['action'] = 'query'
+        payload['format'] = 'json'
+        payload['prop'] = 'extracts'
+        payload['titles'] = ''.join(query).replace(' ', '_')
+        payload['exsentences'] = '5'
+        payload['redirects'] = '1'
+        payload['explaintext'] = '1'
+        headers = {'user-agent': 'Red-cog/1.0'}
+        conn = aiohttp.TCPConnector(verify_ssl=False)
+        session = aiohttp.ClientSession(connector=conn)
+        async with session.get(url, params=payload, headers=headers) as r:
+            result = await r.json()
+        session.close()
+        if '-1' not in result['query']['pages']:
+            for page in result['query']['pages']:
+                title = result['query']['pages'][page]['title']
+                description = result['query']['pages'][page]['extract'].replace('\n', '\n\n')
+            em = discord.Embed(title='Wikipedia: {}'.format(title), description=u'\u2063\n{}...\n\u2063'.format(description[:-3]), color=discord.Color.blue(), url='https://en.wikipedia.org/wiki/{}'.format(title.replace(' ', '_')))
+            em.set_footer(text='Information provided by Wikimedia', icon_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wikimedia-logo.png/600px-Wikimedia-logo.png')
+            await ctx.send(embed=em)
+        else:
+            message = 'I\'m sorry, I can\'t find {}'.format(''.join(query))
+            await ctx.send('```{}```'.format(message))
+    except Exception as e:
+        message = 'Something went terribly wrong! [{}]'.format(e)
+        await ctx.send('```{}```'.format(message))
+   
 
     
     
