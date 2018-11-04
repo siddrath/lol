@@ -567,11 +567,7 @@ async def spawn(ctx, val1):
         embed = discord.Embed(title="Sausage!", color=0xffb6c1)
         embed.set_image(url=url)
         await channel.send(embed=embed)
-        def check(m):
-            return m.content.lower() == val and m.channel == channel
-        msg = await bot.wait_for('message', check=check, timeout=60)
-        val = val.capitalize()
-        
+       
         
    
 
