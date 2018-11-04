@@ -9,6 +9,7 @@ import asyncio
 import random
 from discord.ext import commands
 from PIL import Image, ImageDraw, ImageFont
+import psutil
 
 bot = commands.Bot(description='BAsics can do a lot more.....', command_prefix=commands.when_mentioned_or('p?'))
 
@@ -277,6 +278,29 @@ class BAdmin():
                 await ctx.send(embed=em)
         else:
             await ctx.send(f'''{ctx.author.mention} you aren't eligible for this''', delete_after=3)
+ @bot.command()
+@commands.cooldown(1, 3, commands.BucketType.user)
+async def botinfo(ctx):
+    embed = discord.Embed(title="Team Rocket", description="Bot information", color=0xeee657)
+
+    # give info about you here
+    embed.add_field(name="isse#2508", value="Developer", inline=False)
+
+    # Shows the number of servers the bot is member of.
+    embed.add_field(name="Server count", value=f"{len(bot.guilds)}")
+
+    embed.add_field(name="User Count", value=f"{len(bot.users)}")
+
+    embed.add_field(name="Discord Version", value=discord.__version__)
+    mem = psutil.virtual_memory()
+    cmem = (mem.available/10000000000)
+
+    embed.add_field(name="CPU Statistics", value=f"\nCPU Count **{psutil.cpu_count()}**\nRAM **{cmem} GB**")
+    # give users a link to invite thsi bot to their server
+    embed.add_field(name="Invite", value="[Invite Me](https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591)")
+
+    await ctx.send(embed=embed)
+           
 
 @bot.command(pass_context = True)
 async def say(ctx, *args):
