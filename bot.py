@@ -278,6 +278,13 @@ class BAdmin():
         else:
             await ctx.send(f'''{ctx.author.mention} you aren't eligible for this''', delete_after=3)
 
+@bot.command(pass_context = True)
+async def say(ctx, *args):
+    mesg = ' '.join(args)
+    await ctx.message.delete()
+
+    return await ctx.send(mesg)
+
 
 @bot.command(hidden = True)
 async def code(ctx, command):
