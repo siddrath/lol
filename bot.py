@@ -568,14 +568,15 @@ async def spawn(ctx, val1):
         embed.set_image(url=url)
         await channel.send(embed=embed)
  
+
 @bot.command(pass_context=True, no_pm=True, name='kill')
 async def _kill(ctx, victim: discord.Member):
     """Randomly chooses a kill."""
     author = ctx.message.author
     if victim.id == author.id:
-        message = 'I won\'t let you kill yourself!'
+        await ctx.send('I won\'t let you kill yourself!')
     elif victim.id == ctx.bot.user.id:
-        message = 'I refuse to kill myself!'
+        await ctx.send('I refuse to kill myself!')
     else:
         choices =["{killer} shoves a double barreled shotgun into {victim}\'s mouth and squeezes the trigger of the gun, causing {victim}\'s head to horrifically explode like a ripe pimple, splattering the young person\'s brain matter, gore, and bone fragments all over the walls and painting it a crimson red.",
                   "Screaming in sheer terror and agony, {victim} is horrifically dragged into the darkness by unseen forces, leaving nothing but bloody fingernails and a trail of scratch marks in the ground from which the young person had attempted to halt the dragging process.",
@@ -590,6 +591,7 @@ async def _kill(ctx, victim: discord.Member):
         
         message = str(random.choice(choices)).format(victim=victim.display_name, killer=author.display_name)
         await ctx.send(message)
+
        
         
    
