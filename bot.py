@@ -284,7 +284,7 @@ class BAdmin():
                 await ctx.send(embed=em)
         else:
             await ctx.send(f'''{ctx.author.mention} you aren't eligible for this''', delete_after=3)
-@bot.command()
+@bot.command(pass_context=True, no_pm=True)
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def botinfo(ctx):
     embed = discord.Embed(title="Team Rocket", description="Bot information", color=0xeee657)
