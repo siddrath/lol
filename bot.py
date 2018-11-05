@@ -556,7 +556,7 @@ async def wikipedia(ctx, *, query: str):
         message = 'Something went terribly wrong! [{}]'.format(e)
         await ctx.send('```{}```'.format(message))
         
-@bot.command(no_pm=True)
+@bot.command(pass_context=True, no_pm=True)
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
     """fake spawn of mewbot pokemons"""
@@ -598,7 +598,7 @@ async def _kill(ctx, victim: discord.Member):
 
     
     
-@bot.command(no_pm=True)
+@bot.command(pass_context=True, no_pm=True)
 async def neko(ctx):
     ''''nekos for lyf'''
     r = requests.get("https://nekos.life/api/neko").json()
@@ -620,15 +620,6 @@ async def say(ctx, *args):
 
     return await ctx.send(mesg)
 
-@bot.command(name="start")
-@commands.cooldown(1, 3, commands.BucketType.user)
-async def start_journey(ctx):
-    embed = discord.Embed(title="Select a Starter!", description="Choose any of the Starters!", color=0xffb6c1)
-    embed.add_field(name="...", value="You've been hypnotized by pokemons, and instead of the normal starters, you are forced to pick between \n-Flowin, the Grass type fakemon, \n-Flire the fire type fakemon and \n-Aquino, the water type.")
-    embed.set_thumbnail(url="https://i.pinimg.com/736x/22/b9/59/22b959c3650bed0fff0decef732371c0--pokemon-tattoo-pokemon-special.jpg")
-    embed.set_image(url="https://oyster.ignimgs.com/wordpress/stg.ign.com/2013/01/Pokemon-G3-610x325.jpg")
-    embed.add_field(name="__React__ to Pick a Starter!", value="...")
-    start_msg = await ctx.send(embed=embed)
 
 
 
