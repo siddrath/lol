@@ -284,7 +284,7 @@ class BAdmin():
                 await ctx.send(embed=em)
         else:
             await ctx.send(f'''{ctx.author.mention} you aren't eligible for this''', delete_after=3)
-@bot.command()
+@bot.command(no_pm=True)
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def botinfo(ctx):
     embed = discord.Embed(title="Team Rocket", description="Bot information", color=0xeee657)
@@ -308,7 +308,7 @@ async def botinfo(ctx):
     await ctx.send(embed=embed)
     
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def pepe(ctx, user: discord.Member = None):
     """random pepe!"""
     user = user or ctx.message.author
@@ -418,7 +418,7 @@ async def pepe(ctx, user: discord.Member = None):
     await ctx.send(embed=embed)
     
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def bite(ctx, member: discord.Member):
     """bites  someone!"""
     author = ctx.message.author.mention
@@ -443,7 +443,7 @@ async def bite(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def cuddle(ctx, member: discord.Member):
     """cuddle  someone!"""
     author = ctx.message.author.mention
@@ -469,7 +469,7 @@ async def cuddle(ctx, member: discord.Member):
     await ctx.send(embed=embed)
 
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def pat(ctx, member: discord.Member):
     """pat someone!"""
     author = ctx.message.author.mention
@@ -494,7 +494,7 @@ async def pat(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def kiss(ctx, member: discord.Member):
     """kiss someone!"""
     author = ctx.message.author.mention
@@ -521,7 +521,7 @@ async def kiss(ctx, member: discord.Member):
     
 
  
-@bot.command(pass_context=True, name='wikipedia', aliases=['wiki', 'w'])
+@bot.command(pass_context=True, name='wikipedia', aliases=['wiki', 'w'],no_pm=True)
 async def wikipedia(ctx, *, query: str):
     """
     Get information from Wikipedia
@@ -556,7 +556,7 @@ async def wikipedia(ctx, *, query: str):
         message = 'Something went terribly wrong! [{}]'.format(e)
         await ctx.send('```{}```'.format(message))
         
-@bot.command()
+@bot.command(no_pm=True)
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
     """fake spawn of mewbot pokemons"""
@@ -569,7 +569,7 @@ async def spawn(ctx, val1):
         await channel.send(embed=embed)
  
 
-@bot.command(pass_context=True, no_pm=True, name='kill')
+@bot.command(pass_context=True, no_pm=True, name='kill',no_pm=True)
 async def _kill(ctx, victim: discord.Member):
     """Randomly chooses a kill."""
     author = ctx.message.author
@@ -598,7 +598,7 @@ async def _kill(ctx, victim: discord.Member):
 
     
     
-@bot.command()
+@bot.command(no_pm=True)
 async def neko(ctx):
     ''''nekos for lyf'''
     r = requests.get("https://nekos.life/api/neko").json()
@@ -613,7 +613,7 @@ async def neko(ctx):
 
            
 
-@bot.command(pass_context = True)
+@bot.command(pass_context = True,no_pm=True)
 async def say(ctx, *args):
     mesg = ' '.join(args)
     await ctx.message.delete()
