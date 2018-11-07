@@ -619,6 +619,15 @@ async def say(ctx, *args):
     await ctx.message.delete()
 
     return await ctx.send(mesg)
+@bot.command()
+async def ban(ctx, member, *, reason = None):
+
+    if reason is None:
+        reason = f'Action done by {ctx.author} (ID: {ctx.author.id})'
+
+
+        await ctx.guild.ban(discord.Object(id=member), reason=reason)
+        await ctx.send('\N{OK HAND SIGN}')
 
 
 
@@ -666,6 +675,8 @@ async def on_command_error(ctx, err):
         await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
 
     if ctx.guild.id == 457729395122241537:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+    if ctx.guild.id == 509434069319155712:
         await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
     else:
         return
