@@ -658,8 +658,6 @@ async def on_member_join(member):
 
 @bot.event
 async def on_command_error(ctx, err):
-    @bot.event
-async def on_command_error(ctx, err):
     if ctx.guild.id == 457729395122241537 or ctx.guild.id == 453472827526479874 or ctx.guild.id == 509434069319155712 or ctx.guild.id == 494725137476616202 or ctx.guild.id == 490190146843443201:
     
         send_help = (commands.MissingRequiredArgument, commands.BadArgument, commands.TooManyArguments, commands.UserInputError, commands.CommandNotFound, commands.CommandInvokeError)
