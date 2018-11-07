@@ -624,30 +624,30 @@ async def say(ctx, *args):
 @bot.command()
 async def ban(self,ctx, member: discord.Member, *, reason):
     ': Bans the member if you have authority by name or member id '
-     if ctx.author.permissions_in(ctx.channel).ban_members:
-         if reason is None:
-             await member.send(f'''You have been banned by {ctx.author.name} from {ctx.guild.name} due to __No reason given__ ''')
-              em = discord.Embed(title='Banned', colour=discord.Colour.dark_red(),
-                                description=f'''{member} has been banned''', timestamp= datetime.datetime.utcnow())
-              em.set_thumbnail(url=member.avatar_url)
-              em.add_field(name='Moderator', value=f'''{ctx.author.name}''', inline=False)
-              em.add_field(name='Culpret', value=f'''{member}''', inline=False)
-              em.add_field(name='Reason for Banning', value=f'''_No reason provided_''', inline=False)
-              await ctx.send(embed=em)
-              await member.ban()
-         else:
-              await member.send(f'''You have been Banned by {ctx.author.name} from {ctx.guild.name} due to {reason} ''')
-              em = discord.Embed(title='Banned', colour=discord.Colour.dark_red(),
-                               description=f'''{member} has been banned''', timestamp=datetime.datetime.utcnow())
-              em.set_thumbnail(url=member.avatar_url)
-              em.add_field(name='Moderator', value=f'''{ctx.author.name}''', inline=False)
-              em.add_field(name='Culprit', value=f'''{member}''', inline=False)
-              em.add_field(name='Reason for Banning', value=f'''{reason}''', inline=False)
-              await ctx.send(embed=em)
-              await member.ban()
-     else:
-          message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
-          await message.add_reaction('\u2623')
+    if ctx.author.permissions_in(ctx.channel).ban_members:
+        if reason is None:
+            await member.send(f'''You have been banned by {ctx.author.name} from {ctx.guild.name} due to __No reason given__ ''')
+             em = discord.Embed(title='Banned', colour=discord.Colour.dark_red(),
+                              description=f'''{member} has been banned''', timestamp= datetime.datetime.utcnow())
+             em.set_thumbnail(url=member.avatar_url)
+             em.add_field(name='Moderator', value=f'''{ctx.author.name}''', inline=False)
+             em.add_field(name='Culpret', value=f'''{member}''', inline=False)
+             em.add_field(name='Reason for Banning', value=f'''_No reason provided_''', inline=False)
+             await ctx.send(embed=em)
+             await member.ban()
+        else:
+             await member.send(f'''You have been Banned by {ctx.author.name} from {ctx.guild.name} due to {reason} ''')
+             em = discord.Embed(title='Banned', colour=discord.Colour.dark_red(),
+                              description=f'''{member} has been banned''', timestamp=datetime.datetime.utcnow())
+             em.set_thumbnail(url=member.avatar_url)
+             em.add_field(name='Moderator', value=f'''{ctx.author.name}''', inline=False)
+             em.add_field(name='Culprit', value=f'''{member}''', inline=False)
+             em.add_field(name='Reason for Banning', value=f'''{reason}''', inline=False)
+             await ctx.send(embed=em)
+             await member.ban()
+    else:
+         message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
+         await message.add_reaction('\u2623')
 
 
 
