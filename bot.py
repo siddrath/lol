@@ -681,8 +681,7 @@ async def on_command_error(ctx, err):
         await ctx.send('You do not have the permissions to use this command.')              
     else:
         await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
-    else:
-        return
+   
 
 
 
