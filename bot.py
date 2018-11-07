@@ -207,6 +207,34 @@ class BAdmin():
         else:
             message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
             await message.add_reaction('\u2623')
+    @commands.command()
+    async def ban(self,ctx, member: discord.Member, *, reason):
+        ': Bans the member if you have authority by name or member id '
+        if ctx.author.permissions_in(ctx.channel).ban_members:
+            if reason is None:
+                await member.send(f'''You have been banned by {ctx.author.name} from {ctx.guild.name} due to __No reason given__ ''')
+                em = discord.Embed(title='Banned', colour=discord.Colour.dark_red(),
+                                 description=f'''{member} has been banned''', timestamp= datetime.datetime.utcnow())
+                em.set_thumbnail(url=member.avatar_url)
+                em.add_field(name='Moderator', value=f'''{ctx.author.name}''', inline=False)
+                em.add_field(name='Culpret', value=f'''{member}''', inline=False)
+                em.add_field(name='Reason for Banning', value=f'''_No reason provided_''', inline=False)
+                await ctx.send(embed=em)
+                await member.ban()
+           else:
+               await member.send(f'''You have been Banned by {ctx.author.name} from {ctx.guild.name} due to {reason} ''')
+               em = discord.Embed(title='Banned', colour=discord.Colour.dark_red(),
+                                description=f'''{member} has been banned''', timestamp=datetime.datetime.utcnow())
+               em.set_thumbnail(url=member.avatar_url)
+               em.add_field(name='Moderator', value=f'''{ctx.author.name}''', inline=False)
+               em.add_field(name='Culprit', value=f'''{member}''', inline=False)
+               em.add_field(name='Reason for Banning', value=f'''{reason}''', inline=False)
+               await ctx.send(embed=em)
+               await member.ban()
+        else:
+            message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
+            await message.add_reaction('\u2623') 
+
 
     @commands.command()
     async def perms(self, ctx, user: discord.Member = None):
@@ -619,15 +647,6 @@ async def say(ctx, *args):
     await ctx.message.delete()
 
     return await ctx.send(mesg)
-@bot.command()
-async def ban(ctx, member, *, reason = None):
-
-    if reason is None:
-        reason = f'Action done by {ctx.author} (ID: {ctx.author.id})'
-
-
-        await ctx.guild.ban(discord.Object(id=member), reason=reason)
-        await ctx.send('\N{OK HAND SIGN}')
 
 
 
@@ -664,19 +683,28 @@ async def on_member_join(member):
 
 @bot.event
 async def on_command_error(ctx, err):
-    if ctx.guild.id == 494725137476616202:
+    @bot.event
+async def on_command_error(ctx, err):
+    if ctx.guild.id == 457729395122241537 or ctx.guild.id == 453472827526479874 or ctx.guild.id == 509434069319155712 or ctx.guild.id == 494725137476616202 or ctx.guild.id == 490190146843443201:
+    
+        send_help = (commands.MissingRequiredArgument, commands.BadArgument, commands.TooManyArguments, commands.UserInputError, commands.CommandNotFound, commands.CommandInvokeError)
 
-        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
 
-    if ctx.guild.id == 490190146843443201:
-        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+    if isinstance(err, commands.CommandNotFound):
+        await ctx.send('no command found any problem with commands report to isse#2508')
 
-    if ctx.guild.id == 453472827526479874:
-        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+    elif isinstance(err, commands.MissingRequiredArgument):
+        await ctx.send(' member or user is a required argument that is missing.')
 
-    if ctx.guild.id == 457729395122241537:
-        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
-    if ctx.guild.id == 509434069319155712:
+    elif isinstance(err, commands.CommandInvokeError):
+        await ctx.send(' Missing Permissions or cant ban that user.')
+    
+    elif isinstance(err, commands.CommandOnCooldown):
+        await ctx.send(f'This command is on cooldown. Please wait {err.retry_after:.2f}s')
+
+    elif isinstance(err, commands.MissingPermissions):
+        await ctx.send('You do not have the permissions to use this command.')              
+    else:
         await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
     else:
         return
