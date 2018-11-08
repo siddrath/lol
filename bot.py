@@ -564,7 +564,7 @@ async def wikipedia(ctx, *, query: str):
 async def spawn(ctx, val1):
     """fake spawn of mewbot pokemons"""
     if ctx.author.permissions_in(ctx.channel).manage_server:
-        return
+        
     if ctx.author.id == 411496838550781972:
         channel = ctx.channel
         val = val1.lower() 
@@ -712,6 +712,11 @@ async def on_command_error(ctx, err):
     else:
         await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
    
+@bot.event
+async def on_guild_join(guild):
+    general = find(lambda x: x.name == 'general',  guild.text_channels)
+    if general and general.permissions_for(guild.me).send_messages:
+        await general.send('Greetings! My name is Team Rocket, and my sole responsibility is to help you  {}! for more commands type p?help'.format(guild.name))
 
 
 
