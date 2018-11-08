@@ -690,7 +690,7 @@ async def joined_at(ctx, member: discord.Member = None):
         em.add_field(name='Member', value=f'''{member} joined at {member.joined_at}''', inline=False)
         await ctx.send(embed=em)
 
- @bot.listen()
+@bot.listen()
 async def on_member_join(member):
     await member.send(f"{member.name}Welcome to {member.guild.name}")       
         
