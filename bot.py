@@ -789,12 +789,6 @@ async def on_command_error(ctx, err):
     else:
         print(''.join(traceback.format_exception(type(err), err, err.__traceback__)))
 
-@bot.event
-async def on_guild_join(guild):
-    general = find(lambda x: x.name == 'general',  guild.text_channels)
-    if general and general.permissions_for(guild.me).send_messages:
-        if general and general.permissions_for(guild.me).send_messages:
-            await general.send('Hello Greetings! My name is Team Rocket, and my sole responsibility is to help you {}! for more commands type p?'.format(guild.name))
 
 
 
