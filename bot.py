@@ -700,15 +700,6 @@ async def joined_at(ctx, member: discord.Member = None):
         em.add_field(name='Member', value=f'''{member} joined at {member.joined_at}''', inline=False)
         await ctx.send(embed=em)
         
-@bot.command(aliases=["Invite"])
-@commands.cooldown(1, 3, commands.BucketType.user)
-async def invite(ctx):
-    embed = discord.Embed(title="Invite Me", description="The invite link for Team Rocket", color=0xffb6c1)
-    embed.add_field(name="Invite", value="[Invite MewBot](https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591)")
-    embed.add_field(name="User Count", value=f"{len(bot.users)}")
-    await ctx.send(embed=embed)
-    
-    
 
 @bot.command()
 async def neko(ctx):
