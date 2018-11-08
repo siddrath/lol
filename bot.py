@@ -34,10 +34,6 @@ class BAsics():
         await m.edit(content='**Pong! Took: {}ms**'.format(int(time)))
         await ctx.message.delete()
 
-    @commands.command(pass_contex=True)
-    async def invite(self, ctx):
-        ': Invite me '
-        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=394080286461263873&scope=bot&permissions=1543687243')
 
     @commands.command()
     async def uptime(self,ctx):
@@ -654,18 +650,7 @@ async def spawn(ctx, val1):
 
 
 
-@bot.command()
-async def neko(ctx):
-    ''''sends cute dog pics'''
-    r = requests.get("https://nekos.life/api/neko").json()
 
-    colours = [0x1abc9c, 0x11806a, 0x2ecc71, 0x1f8b4c, 0x3498db, 0x206694, 0x9b59b6, 0x71368a, 0xe91e63, 0xad1457, 0xf1c40f, 0xc27c0e, 0xa84300, 0xe74c3c, 0x992d22, 0x95a5a6, 0x607d8b, 0x979c9f, 0x546e7a]
-    col = int(random.random() * len(colours))
-    content = [":neko: Don't be sad! This neko wants to play with you!", "You seem lonely, {0.mention}. Here, have a neko. They're not as nice , but enjoy!".format(ctx.message.author), "Weuf, woof, woooooooooof. Woof you.", "Pupper!", "Meow... wait its neko."]
-    con = int(random.random() * len(content))
-    embed=discord.Embed()
-    embed.set_image(url=r["neko"])
-    await ctx.send(content=content[con],embed=embed)
 
 
 @bot.command(pass_context=True, no_pm=True, name='kill')
@@ -728,6 +713,39 @@ async def joined_at(ctx, member: discord.Member = None):
         em.set_thumbnail(url=member.avatar_url)
         em.add_field(name='Member', value=f'''{member} joined at {member.joined_at}''', inline=False)
         await ctx.send(embed=em)
+        
+@bot.command(aliases=["Invite"])
+@commands.cooldown(1, 3, commands.BucketType.user)
+async def invite(ctx):
+    embed = discord.Embed(title="Invite Me", description="The invite link for Team Rocket", color=0xffb6c1)
+    embed.add_field(name="Invite", value="[Invite MewBot](https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591)")
+    embed.add_field(name="User Count", value=f"{len(bot.users)}")
+    await ctx.send(embed=embed)
+    
+    
+
+@bot.command()
+async def neko(ctx):
+    ''''sends cute nekos pics'''
+    r = requests.get("https://nekos.life/api/neko").json()
+
+    colours = [0x1abc9c, 0x11806a, 0x2ecc71, 0x1f8b4c, 0x3498db, 0x206694, 0x9b59b6, 0x71368a, 0xe91e63, 0xad1457, 0xf1c40f, 0xc27c0e, 0xa84300, 0xe74c3c, 0x992d22, 0x95a5a6, 0x607d8b, 0x979c9f, 0x546e7a]
+    col = int(random.random() * len(colours))
+    content = [":neko: Don't be sad! This neko wants to play with you!", "You seem lonely, {0.mention}. Here, have a neko. They're not as nice , but enjoy!".format(ctx.message.author), "Weuf, woof, woooooooooof. Woof you.", "Pupper!", "Meow... wait its neko."]
+    con = int(random.random() * len(content))
+    embed=discord.Embed()
+    embed.set_image(url=r["neko"])
+    await ctx.send(content=content[con],embed=embed)
+    
+ 
+@bot.command()
+async def dog(ctx):
+    ''''sends cute dog pics'''
+    r = requests.get("https://dog.ceo/api/breeds/image/random").json()
+    embed=discord.Embed()
+    embed.set_image(url=r["message"])
+    await ctx.send(embed=embed)
+
 
     
             
@@ -758,10 +776,10 @@ async def on_command_error(ctx, err):
         await ctx.send('no command found any problem with commands report to isse#2508')
 
     elif isinstance(err, commands.MissingRequiredArgument):
-        await ctx.send(' member or user is a required argument that is missing.')
+        await ctx.send(' member\ user\choice is a required argument that is missing.')
 
     elif isinstance(err, commands.CommandInvokeError):
-        await ctx.send(' Missing Permissions or cant ban that user.')
+        await ctx.send(' Missing Permissions .')
     
     elif isinstance(err, commands.CommandOnCooldown):
         await ctx.send(f'This command is on cooldown. Please wait {err.retry_after:.2f}s')
