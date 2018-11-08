@@ -716,8 +716,7 @@ async def on_command_error(ctx, err):
 async def on_guild_join(guild):
     general = find(lambda x: x.name == 'general',  guild.text_channels)
     if general and general.permissions_for(guild.me).send_messages:
-        await general.send('Greetings! My name is Team Rocket, and my sole responsibility is to help you  {}! for more commands type p?help'.format(guild.name))
-
+        await general.send('Hello {}!'.format(guild.name))
 
 
 
