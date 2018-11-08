@@ -560,7 +560,6 @@ async def wikipedia(ctx, *, query: str):
         await ctx.send('```{}```'.format(message))
         
 @bot.command(pass_context=True)
-@checks.admin_or_permissions(administrator=True)
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
     """fake spawn of mewbot pokemons"""
