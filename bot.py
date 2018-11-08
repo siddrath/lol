@@ -563,7 +563,7 @@ async def wikipedia(ctx, *, query: str):
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
     """fake spawn of mewbot pokemons"""
-    if ctx.author.permissions_in(ctx.channel).Administrator:
+    if ctx.author.permissions_in(ctx.channel).manage_server:
         return
     if ctx.author.id == 411496838550781972:
         channel = ctx.channel
@@ -572,7 +572,6 @@ async def spawn(ctx, val1):
         embed = discord.Embed(title="Sausage!", color=0xffb6c1)
         embed.set_image(url=url)
         await channel.send(embed=embed)
-        await member.Administrator()
     else:
         await ctx.send("seems like you cant do that")
  
