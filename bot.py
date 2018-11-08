@@ -563,7 +563,7 @@ async def wikipedia(ctx, *, query: str):
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
     """fake spawn of mewbot pokemons"""
-    if ctx.author.permissions_in(ctx.channel).ban_members:
+    if ctx.author.permissions_in(ctx.channel).administrator:
         return
     if ctx.author.id == 411496838550781972:
         channel = ctx.channel
