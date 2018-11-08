@@ -697,6 +697,13 @@ async def on_command_error(ctx, err):
         await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
     else:
         return
+    
+@bot.event
+async def on_guild_join(guild):
+    general = find(lambda x: x.name == 'general',  guild.text_channels)
+    if general and general.permissions_for(guild.me).send_messages:
+        if general and general.permissions_for(guild.me).send_messages:
+            await general.send('Hello {}!'.format(guild.name))
 
 
 
