@@ -722,7 +722,7 @@ async def botinfo(ctx):
 
     embed.add_field(name="CPU Statistics", value=f"\nCPU Count **{psutil.cpu_count()}**\nRAM **{cmem} GB**")
     # give users a link to invite thsi bot to their server
-    embed.add_field(name="Invite", value="[Invite Me](https://discordapp.com/oauth2/authorize?client_id=481012071627096075&scope=bot&permissions=2146958847)")
+    embed.add_field(name="Invite", value="[Invite Me](https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591)")
 
     await ctx.send(embed=embed)
 
