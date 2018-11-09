@@ -628,6 +628,27 @@ async def spawn(ctx, val1):
         embed = discord.Embed(title="Sausage!", color=0xffb6c1)
         embed.set_image(url=url)
         await channel.send(embed=embed)
+        
+@bot.command()
+async def dog(ctx):
+    ''''sends cute dog pics'''
+    r = requests.get("https://dog.ceo/api/breeds/image/random").json()
+    embed=discord.Embed()
+    embed.set_image(url=r["message"])
+    await ctx.send(embed=embed)
+ 
+@bot.command()
+async def neko(ctx):
+    ''''sends cute dog pics'''
+    r = requests.get("https://nekos.life/api/neko").json()
+
+    colours = [0x1abc9c, 0x11806a, 0x2ecc71, 0x1f8b4c, 0x3498db, 0x206694, 0x9b59b6, 0x71368a, 0xe91e63, 0xad1457, 0xf1c40f, 0xc27c0e, 0xa84300, 0xe74c3c, 0x992d22, 0x95a5a6, 0x607d8b, 0x979c9f, 0x546e7a]
+    col = int(random.random() * len(colours))
+    content = [":neko: Don't be sad! This neko wants to play with you!", "You seem lonely, {0.mention}. Here, have a neko. They're not as nice , but enjoy!".format(ctx.message.author), "Weuf, woof, woooooooooof. Woof you.", "Pupper!", "Meow... wait its neko."]
+    con = int(random.random() * len(content))
+    embed=discord.Embed()
+    embed.set_image(url=r["neko"])
+    await ctx.send(content=content[con],embed=embed)
 
 
 @bot.command(pass_context=True, no_pm=True, name='kill')
@@ -679,6 +700,30 @@ async def ban(ctx, member: discord.Member, *, reason):
     else:
         message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
         await message.add_reaction('\u2623') 
+        
+@bot.command()
+@commands.cooldown(1, 3, commands.BucketType.user)
+async def botinfo(ctx):
+    embed = discord.Embed(title="Team Rocket", description="Bot information", color=0xeee657)
+
+    # give info about you here
+    embed.add_field(name="isse#2508", value="Developer", inline=False)
+
+    # Shows the number of servers the bot is member of.
+    embed.add_field(name="Server count", value=f"{len(bot.guilds)}")
+
+    embed.add_field(name="User Count", value=f"{len(bot.users)}")
+
+    embed.add_field(name="Discord Version", value=discord.__version__)
+    mem = psutil.virtual_memory()
+    cmem = (mem.available/10000000000)
+
+    embed.add_field(name="CPU Statistics", value=f"\nCPU Count **{psutil.cpu_count()}**\nRAM **{cmem} GB**")
+    # give users a link to invite thsi bot to their server
+    embed.add_field(name="Invite", value="[Invite Me](https://discordapp.com/oauth2/authorize?client_id=481012071627096075&scope=bot&permissions=2146958847)")
+
+    await ctx.send(embed=embed)
+
 
 
 @bot.command(pass_context=True)
@@ -691,18 +736,7 @@ async def joined_at(ctx, member: discord.Member = None):
         em.add_field(name='Member', value=f'''{member} joined at {member.joined_at}''', inline=False)
         await ctx.send(embed=em)
         
-@bot.command()
-async def neko(ctx):
-    ''''sends cute nekos'''
-    r = requests.get("https://nekos.life/api/neko").json()
-
-    colours = [0x1abc9c, 0x11806a, 0x2ecc71, 0x1f8b4c, 0x3498db, 0x206694, 0x9b59b6, 0x71368a, 0xe91e63, 0xad1457, 0xf1c40f, 0xc27c0e, 0xa84300, 0xe74c3c, 0x992d22, 0x95a5a6, 0x607d8b, 0x979c9f, 0x546e7a]
-    col = int(random.random() * len(colours))
-    content = [":neko: Don't be sad! This neko wants to play with you!", "You seem lonely, {0.mention}. Here, have a neko. They're not as nice , but enjoy!".format(ctx.message.author), "Weuf, woof, woooooooooof. Woof you.", "Pupper!", "Meow... wait its neko."]
-    con = int(random.random() * len(content))
-    embed=discord.Embed()
-    embed.set_image(url=r["neko"])
-    await ctx.send(content=content[con],embed=embed)
+        
 
 @bot.listen()
 async def on_member_join(member):
@@ -711,17 +745,20 @@ async def on_member_join(member):
 
 @bot.event
 async def on_command_error(ctx, err):
-    if ctx.guild.id == 411496838550781972 or ctx.guild.id == 453472827526479874 or ctx.guild.id == 494725137476616202 or ctx.guild.id == 509434069319155712 or ctx.guild.id == 490190146843443201:
+    if ctx.guild.id == 490190146843443201:
         await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+        
+    if ctx.guild.id == 494725137476616202:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 453472827526479874:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 457729395122241537:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 509434069319155712:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')   
     else:
         return
     
-@bot.event
-async def on_guild_join(guild):
-    general = find(lambda x: x.name == 'general',  guild.text_channels)
-    if general and general.permissions_for(guild.me).send_messages:
-        if general and general.permissions_for(guild.me).send_messages:
-            await general.send('Hello {}!'.format(guild.name))
 
 
 
