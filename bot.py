@@ -711,7 +711,7 @@ async def on_member_join(member):
 
 @bot.event
 async def on_command_error(ctx, err):
-    if ctx.guild.id == 411496838550781972:
+    if ctx.guild.id == 411496838550781972 or ctx.guild.id == 453472827526479874 or ctx.guild.id == 494725137476616202 or ctx.guild.id == 509434069319155712 or ctx.guild.id == 490190146843443201:
         await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
     else:
         return
