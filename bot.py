@@ -5,6 +5,7 @@ import inspect
 import os
 import io
 import re
+import requests
 import asyncio
 import random
 from discord.ext import commands
