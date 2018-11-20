@@ -638,6 +638,57 @@ async def dog(ctx):
     embed=discord.Embed()
     embed.set_image(url=r["message"])
     await ctx.send(embed=embed)
+    
+@bot.command(aliases=['eval'])
+
+async def eval_fn(ctx, *, cmd):
+
+    """Evaluates input."""
+
+    fn_name = "_eval_expr"
+
+
+
+    cmd = cmd.strip("` ")
+
+    cmd = "\n".join(f"    {i}" for i in cmd.splitlines())
+
+    body = f"async def {fn_name}():\n{cmd}"
+
+
+
+    parsed = ast.parse(body)
+
+    body = parsed.body[0].body
+
+
+
+    insert_returns(body)
+
+
+
+    env = {
+
+        'bot': ctx.bot,
+
+        'discord': discord,
+
+        'commands': commands,
+
+        'ctx': ctx,
+
+        '__import__': __import__
+
+    }
+
+    exec(compile(parsed, filename="<ast>", mode="exec"), env)
+
+
+
+    result = (await eval(f"{fn_name}()", env))
+
+    await ctx.send(result)
+
  
 @bot.command()
 async def neko(ctx):
