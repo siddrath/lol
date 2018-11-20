@@ -12,6 +12,7 @@ import psutil
 from discord.ext import commands
 from PIL import Image, ImageDraw, ImageFont
 import json
+import ast
 
 bot = commands.Bot(description='Isse can do a lot more.....', command_prefix=commands.when_mentioned_or('p?'))
 
