@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 import json
 import ast
 
-bot = commands.Bot(description='Isse can do a lot more.....', command_prefix=commands.when_mentioned_or('*'))
+bot = commands.Bot(description='Isse can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
 
 
 class BAsics():
@@ -837,7 +837,7 @@ async def on_ready():
     bot.load_extension("fun")
     bot.load_extension("search")
     bot.load_extension('ExampleRepl')
-    options = ('help via p?help', 'to Garry#2508', f'on {len(bot.guilds)} servers')
+    options = ('help via ?help', 'to Garry#2508', f'on {len(bot.guilds)} servers')
     while True:
         await bot.change_presence(activity=discord.Streaming(name=random.choice(options), url='https://www.twitch.tv/cohhcarnage'))
         await asyncio.sleep(10)
