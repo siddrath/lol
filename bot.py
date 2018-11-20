@@ -623,7 +623,7 @@ async def slap(ctx, member: discord.Member):
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
-     if ctx.author.permissions_in(ctx.channel).Administrator:
+     if ctx.author.permissions_in(ctx.channel).manage_roles:
         channel = ctx.channel
         val = val1.lower() 
         url = "https://img.pokemondb.net/artwork/vector/large/" + val + ".png"
