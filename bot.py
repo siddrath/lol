@@ -623,7 +623,7 @@ async def slap(ctx, member: discord.Member):
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
-    if ctx.author.id == 411496838550781972:
+     if ctx.author.permissions_in(ctx.channel).Administrator:
         channel = ctx.channel
         val = val1.lower() 
         url = "https://img.pokemondb.net/artwork/vector/large/" + val + ".png"
@@ -769,7 +769,7 @@ async def on_ready():
     bot.load_extension("fun")
     bot.load_extension("search")
     bot.load_extension('ExampleRepl')
-    options = ('help via p?help', 'to isse#2508', f'on {len(bot.guilds)} servers')
+    options = ('help via p?help', 'to Garry#2508', f'on {len(bot.guilds)} servers')
     while True:
         await bot.change_presence(activity=discord.Streaming(name=random.choice(options), url='https://www.twitch.tv/cohhcarnage'))
         await asyncio.sleep(10)
