@@ -624,7 +624,7 @@ async def slap(ctx, member: discord.Member):
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
-    '''':requires manage role perms fake spawn of mewbot''''
+    """:requires manage role perms fake spawn of mewbot"""
      if ctx.author.permissions_in(ctx.channel).manage_roles:
         channel = ctx.channel
         val = val1.lower() 
@@ -774,7 +774,7 @@ async def ban(ctx, member: discord.Member, *, reason):
         
 @bot.command()
 async def unban(ctx, userid: int):
-    '''':unban member using userid''''
+    """:unban member using userid"""
     if ctx.author.permissions_in(ctx.channel).ban_members:
         banlist = await ctx.guild.bans()
         for bans in banlist:
