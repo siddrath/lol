@@ -46,6 +46,47 @@ class BAsics():
         time = matches[0]
         fmtime = "{0[0]} days, {0[1]} hours {0[2]} minutes".format(time)
         await ctx.send(f'''```py\n{fmtime}```''')
+        
+    @commands.command(hidden=True, name='exec')
+    async def _eval(self, ctx, *, body: str):
+        if ctx.author.id != ownerid:
+            return
+        env = {
+            'bot': self.bot,
+            'ctx': ctx,
+            'channel': ctx.channel,
+            'author': ctx.author,
+            'server': ctx.guild,
+            'message': ctx.message,
+            '_': self._last_result,
+        }
+        env.update(globals())
+        body = self.cleanup_code(body)
+        stdout = io.StringIO()
+        to_compile = 'async def func():\n%s' % textwrap.indent(body, '  ')
+        try:
+           exec(to_compile, env)
+        except SyntaxError as e:
+            return await ctx.send(self.get_syntax_error(e))
+        func = env['func']
+        try:
+           with redirect_stdout(stdout):
+               ret = await func()
+        except Exception as e:
+            value = stdout.getvalue()
+            await ctx.send('py\n{}{}\n'.format(value, traceback.format_exc()))
+        else:
+            value = stdout.getvalue()
+            try:
+               await ctx.message.add_reaction('✅')
+           except:
+                 pass
+            if ret is None:
+                if value:
+                    await ctx.send('py\n%s\n' % value)
+            else:
+                self._last_result = ret
+                await ctx.send('py\n%s%s\n' % (value, ret))
 
     @commands.command()
     async def serverinfo(self, ctx):
@@ -631,71 +672,6 @@ async def dog(ctx):
     embed.set_image(url=r["message"])
     await ctx.send(embed=embed)
     
-def insert_returns(body):
-    # insert return stmt if the last expression is a expression statement
-    if isinstance(body[-1], ast.Expr):
-        body[-1] = ast.Return(body[-1].value)
-        ast.fix_missing_locations(body[-1])
-
-    # for if statements, we insert returns into the body and the orelse
-    if isinstance(body[-1], ast.If):
-        insert_returns(body[-1].body)
-        insert_returns(body[-1].orelse)
-
-    # for with blocks, again we insert returns into the body
-    if isinstance(body[-1], ast.With):
-        insert_returns(body[-1].body)
-
-    
-@bot.command(aliases=['eval'])
-
-async def eval_fn(ctx, *, cmd):
-
-    """Evaluates input."""
-
-    fn_name = "_eval_expr"
-
-
-
-    cmd = cmd.strip("` ")
-
-    cmd = "\n".join(f"    {i}" for i in cmd.splitlines())
-
-    body = f"async def {fn_name}():\n{cmd}"
-
-
-
-    parsed = ast.parse(body)
-
-    body = parsed.body[0].body
-
-
-
-    insert_returns(body)
-
-
-
-    env = {
-
-        'bot': ctx.bot,
-
-        'discord': discord,
-
-        'commands': commands,
-
-        'ctx': ctx,
-
-        '__import__': __import__
-
-    }
-
-    exec(compile(parsed, filename="<ast>", mode="exec"), env)
-
-
-
-    result = (await eval(f"{fn_name}()", env))
-
-    await ctx.send(result)
 
  
 @bot.command()
