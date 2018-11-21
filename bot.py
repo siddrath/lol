@@ -621,17 +621,7 @@ async def slap(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
     
-@bot.command()
-@commands.cooldown(1, 3, commands.BucketType.user)
-async def spawn(ctx, val1):
-    """:requires manage role perms fake spawn of mewbot"""
-     if ctx.author.permissions_in(ctx.channel).manage_roles:
-        channel = ctx.channel
-        val = val1.lower() 
-        url = "https://img.pokemondb.net/artwork/vector/large/" + val + ".png"
-        embed = discord.Embed(title="A Pokemon Has Spawned, Say it's name to catch it!", color=0xffb6c1)
-        embed.set_image(url=url)
-        await channel.send(embed=embed)
+
         
 @bot.command()
 async def dog(ctx):
