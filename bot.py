@@ -624,11 +624,12 @@ async def slap(ctx, member: discord.Member):
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def spawn(ctx, val1):
+    '''':requires manage role perms fake spawn of mewbot''''
      if ctx.author.permissions_in(ctx.channel).manage_roles:
         channel = ctx.channel
         val = val1.lower() 
         url = "https://img.pokemondb.net/artwork/vector/large/" + val + ".png"
-        embed = discord.Embed(title="Sausage!", color=0xffb6c1)
+        embed = discord.Embed(title="A Pokemon Has Spawned, Say it's name to catch it!", color=0xffb6c1)
         embed.set_image(url=url)
         await channel.send(embed=embed)
         
@@ -770,6 +771,16 @@ async def ban(ctx, member: discord.Member, *, reason):
     else:
         message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
         await message.add_reaction('\u2623') 
+        
+@bot.command()
+async def unban(ctx, userid: int):
+    '''':unban member using userid''''
+    if ctx.author.permissions_in(ctx.channel).ban_members:
+        banlist = await ctx.guild.bans()
+        for bans in banlist:
+            if(bans.user.id == userid):
+                await ctx.guild.unban(bans.user)
+                await ctx.send("successfully unbanned")
         
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
