@@ -47,46 +47,7 @@ class BAsics():
         fmtime = "{0[0]} days, {0[1]} hours {0[2]} minutes".format(time)
         await ctx.send(f'''```py\n{fmtime}```''')
         
-    @commands.command(hidden=True, name='exec')
-    async def _eval(self, ctx, *, body: str):
-        if ctx.author.id != ownerid:
-            return
-        env = {
-            'bot': self.bot,
-            'ctx': ctx,
-            'channel': ctx.channel,
-            'author': ctx.author,
-            'server': ctx.guild,
-            'message': ctx.message,
-            '_': self._last_result,
-        }
-        env.update(globals())
-        body = self.cleanup_code(body)
-        stdout = io.StringIO()
-        to_compile = 'async def func():\n%s' % textwrap.indent(body, '  ')
-        try:
-           exec(to_compile, env)
-        except SyntaxError as e:
-            return await ctx.send(self.get_syntax_error(e))
-        func = env['func']
-        try:
-           with redirect_stdout(stdout):
-               ret = await func()
-        except Exception as e:
-            value = stdout.getvalue()
-            await ctx.send('py\n{}{}\n'.format(value, traceback.format_exc()))
-        else:
-            value = stdout.getvalue()
-            try:
-               await ctx.message.add_reaction('✅')
-           except:
-                 pass
-            if ret is None:
-                if value:
-                    await ctx.send('py\n%s\n' % value)
-            else:
-                self._last_result = ret
-                await ctx.send('py\n%s%s\n' % (value, ret))
+   
 
     @commands.command()
     async def serverinfo(self, ctx):
