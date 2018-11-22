@@ -784,11 +784,20 @@ async def on_command_error(ctx, err):
     if ctx.guild.id == 457729395122241537:
         await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
     if ctx.guild.id == 509434069319155712:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')   
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 500572118396698624:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 457487658374135808:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 457318783951044609:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 515059024098754564:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 480246586279067650:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
     else:
         return
     
-
 
 
 @bot.event
