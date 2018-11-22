@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 import json
 import ast
 
-bot = commands.Bot(description='Isse can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
+bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
 
 
 class BAsics():
@@ -445,6 +445,27 @@ async def wikipedia(ctx, *, query: str):
     except Exception as e:
         message = 'Something went terribly wrong! [{}]'.format(e)
         await ctx.send('```{}```'.format(message))
+        
+            
+@bot.command(pass_context=True, aliases=['whois'])
+async def userinfo(ctx, member: discord.Member = None):
+
+    name="user",
+    if member is None:
+        member = ctx.author
+
+    e = discord.Embed(title=f"User: {member.name}",description=f"This is all the information I could find on {member.name}...",)
+    e.set_thumbnail(url=member.avatar_url_as(static_format="png"))
+    e.add_field(name="Name",value=member.name)
+    e.add_field(name="Discriminator",value=f"#{member.discriminator}")
+    e.add_field(name="ID",value=str(member.id))
+    e.add_field(name="Bot",value=str(member.bot).capitalize())
+    e.add_field(name="Highest Role",value=member.top_role.mention)
+    e.add_field(name="Join Position",value=f"#{sorted(member.guild.members, key=lambda m: m.joined_at).index(member) + 1}")
+    e.add_field(name="Created Account",value=member.created_at.strftime("%c"))
+    e.add_field(name="Joined This Server",value=member.joined_at.strftime("%c"))
+    e.add_field(name="Roles",value=f"{len(member.roles)-1} Roles: {', '.join([r.mention for r in member.roles if not r.is_default()])}")
+    await ctx.send(embed=e)
 
 
 
