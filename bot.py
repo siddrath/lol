@@ -805,7 +805,6 @@ async def help(ctx):
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
     embed.add_field(name='Fun Commands :', value=f'''neko\n cat\n pepe\n rps\n 8ball\n bite\n bribe\n butts\n calculated\n cuddle\n poke \n daddy\n flirt\n hug\n insult\n dog\n kiss\n love\n pat\n pizza\nslap \nupdog\nsword\n wanted\n profile\n ''', inline=False)
-    embed.add_field(name='pokedex :', value=f''' pokemon\n''', inline=False)
     embed.add_field(name='search :', value=f''' youtube\n wikipedia\n ''', inline=False)
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n''', inline=False)
