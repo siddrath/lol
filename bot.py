@@ -796,15 +796,14 @@ async def joined_at(ctx, member: discord.Member = None):
 @bot.command(pass_context=True)
 async def help(ctx):
     """: help commands"""
-    embed = discord.Embed(title=f'''commands''', description=f'''pikachu bot prefix : !''',color=discord.Colour.dark_red())
-    embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv16_7xeYF7jboCqijoHf2SzQrBgszZ90YzWP0klBCa-dyu6TnrA')
+    embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_red())
+    embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
     embed.add_field(name='Fun Commands :', value=f''''neko cat pepe rps 8ball bite bribe butts calculated cuddle poke daddy flirt hug insult dog kiss love pat pizza slap updog sword wanted profile ''', inline=False)
     embed.add_field(name='pokedex :', value=f''' pokemon''', inline=False)
     embed.add_field(name='search :', value=f''' youtube wikipedia ''', inline=False)
-    embed.add_field(name=' server :', value=f'''Serverinfo invite server avatar''', inline=False)
-    embed.add_field(name=' Whats New :', value=f''' Now i will welcome users through DMS when they join server by default no need to set it everytime for every server''', inline=False)
+    embed.add_field(name=' server :', value=f'''Serverinfo invite server avatar userinfo''', inline=False)
+    embed.add_field(name=' moderation:', value=f''' Ban Unban Kick Warn Softwarn prune purge estimatedprune''', inline=False)
     send = await ctx.send(embed=embed)
-    await send.add_reaction(emoji="💖")
         
         
 
