@@ -840,6 +840,14 @@ async def on_command_error(ctx, err):
     else:
         return
     
+    
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Game(name="playing ?help",type=1))
+
+    print ("Started")
+
+    
 
 
 
