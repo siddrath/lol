@@ -798,11 +798,13 @@ async def help(ctx):
     """: help commands"""
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_red())
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
-    embed.add_field(name='Fun Commands :', value=f''''neko cat pepe rps 8ball bite bribe butts calculated cuddle poke daddy flirt hug insult dog kiss love pat pizza slap updog sword wanted profile ''', inline=False)
-    embed.add_field(name='pokedex :', value=f''' pokemon''', inline=False)
-    embed.add_field(name='search :', value=f''' youtube wikipedia ''', inline=False)
-    embed.add_field(name=' server :', value=f'''Serverinfo invite server avatar userinfo''', inline=False)
-    embed.add_field(name=' moderation:', value=f''' Ban Unban Kick Warn Softwarn prune purge estimatedprune''', inline=False)
+    embed.add_field(name='Fun Commands :', value=f'''neko\n cat\n pepe\n rps\n 8ball\n bite\n bribe\n butts\n calculated\n cuddle\n poke \n daddy\n flirt\n hug\n insult\n dog\n kiss\n love\n pat\n pizza\nslap \nupdog\nsword\n wanted\n profile\n ''', inline=False)
+    embed.add_field(name='pokedex :', value=f''' pokemon\n''', inline=False)
+    embed.add_field(name='search :', value=f''' youtube\n wikipedia\n ''', inline=False)
+    embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo''', inline=False)
+    embed.add_field(name=' moderation:', value=f''' Ban :bans user\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n''', inline=False)
+    embed.add_field(name='Extra:', value=f''' feedback\n ''', inline=False)
+    embed.set_footer(text = "Made by busy till 14th dec#2508", icon_url = 'https://images-ext-2.discordapp.net/external/UFMctyIrjdVox3mMvmyr-wgJhrPriKpmHvm-BgO4h1o/%3Fq%3Dtbn%3AANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw/https/encrypted-tbn0.gstatic.com/images')
     send = await ctx.send(embed=embed)
         
         
