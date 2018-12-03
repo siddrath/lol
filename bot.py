@@ -794,6 +794,12 @@ async def joined_at(ctx, member: discord.Member = None):
         await ctx.send(embed=em)
         
 @bot.command(pass_context=True)
+async def rps(ctx, choice):
+    """"""
+    choices = ["rock", "paper", "scissors"]
+    await ctx.send("You chose {} | CPU chose {}".format(choice, random.choice(choices)))
+        
+@bot.command(pass_context=True)
 async def help(ctx):
     """: help commands"""
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
