@@ -796,7 +796,7 @@ async def joined_at(ctx, member: discord.Member = None):
 @bot.command(pass_context=True)
 async def help(ctx):
     """: help commands"""
-    embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_red())
+    embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
     embed.add_field(name='Fun Commands :', value=f'''neko\n cat\n pepe\n rps\n 8ball\n bite\n bribe\n butts\n calculated\n cuddle\n poke \n daddy\n flirt\n hug\n insult\n dog\n kiss\n love\n pat\n pizza\nslap \nupdog\nsword\n wanted\n profile\n ''', inline=False)
     embed.add_field(name='pokedex :', value=f''' pokemon\n''', inline=False)
