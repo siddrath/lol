@@ -466,6 +466,33 @@ async def userinfo(ctx, member: discord.Member = None):
     e.add_field(name="Joined This Server",value=member.joined_at.strftime("%c"))
     e.add_field(name="Roles",value=f"{len(member.roles)-1} Roles: {', '.join([r.mention for r in member.roles if not r.is_default()])}")
     await ctx.send(embed=e)
+    
+
+@bot.command()
+async def feedback(ctx, * , feedback):
+    channel = bot.get_channel(519136306853314560)
+    embed = discord.Embed(title="Feedback Submission :robot:", colour=discord.Colour.red(), description=f'''Submitted by- {ctx.author}''')
+    embed.add_field(name="Feedback", value=feedback, inline=False)
+    embed.set_footer(text=f"From {ctx.guild.name} ({ctx.guild.id})")
+    await channel.send(embed=embed)
+    await ctx.send("Your Feedback Has Been Submitted")
+
+
+@bot.command()
+async def poll(ctx, *, poll_message):
+        embed = discord.Embed(title=f'''{ctx.author}'s new poll''', colour=discord.Colour.red(), description=poll_message)
+        try:
+            await ctx.message.delete()
+        except:
+            pass
+        msg = await ctx.send(embed=embed)        
+        try:
+            await msg.add_reaction("\N{THUMBS UP SIGN}")
+            await msg.add_reaction("\N{THUMBS DOWN SIGN}")
+        except:
+            await msg.delete()
+            await ctx.send("Make sure i can add reactions to the poll")
+        
 
 
 
