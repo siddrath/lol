@@ -854,14 +854,15 @@ async def help(ctx):
 async def reload(ctx, extension):
     if ctx.author.id == 411496838550781972:
         try:
-            bot.unload_extension(module)
-            bot.load_extension(module)
-    except Exception as e:
-        await ctx.send('\N{PISTOL}')
-        await ctx.send('{}: {}'.format(type(e).__name__, e))
+           bot.unload_extension(extension)
+            bot.load_extension(extension)
+            embed = discord.Embed(title="Reload", description=f'''Reloaded {extension}''',
+                                  color=discord.Colour.dark_purple())
+            await ctx.send(embed=embed)
+       except ModuleNotFoundError:
+            await ctx.send("```No such extention exists```")
     else:
-        await ctx.send('\N{OK HAND SIGN}')
-
+        await ctx.send("```You can't do it buddy you better know it```")
         
 
 @bot.listen()
