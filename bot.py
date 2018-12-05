@@ -848,6 +848,22 @@ async def help(ctx):
     embed.set_footer(text = "Made by busy till 14th dec#2508", icon_url = 'https://images-ext-2.discordapp.net/external/UFMctyIrjdVox3mMvmyr-wgJhrPriKpmHvm-BgO4h1o/%3Fq%3Dtbn%3AANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw/https/encrypted-tbn0.gstatic.com/images')
     send = await ctx.send(embed=embed)
     
+    
+    
+@bot.command(hidden=True)
+async def reload(ctx, extension):
+    if ctx.author.id == 411496838550781972:
+       try:
+            bot.unload_extension(extension)
+            bot.load_extension(extension)
+            embed = discord.Embed(title="Reload", description=f'''Reloaded {extension}''',
+                                  color=discord.Colour.dark_purple())
+            await ctx.send(embed=embed)
+       except ModuleNotFoundError:
+            await ctx.send("```No such extention exists```")
+    else:
+        await ctx.send("```You can't do it buddy you better know it```")
+    
 
         
 
