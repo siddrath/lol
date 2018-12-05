@@ -13,6 +13,7 @@ from discord.ext import commands
 from PIL import Image, ImageDraw, ImageFont
 import json
 import ast
+from urllib import parse
 
 
 bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
@@ -799,6 +800,40 @@ async def rps(ctx, choice):
     """"""
     choices = ["rock", "paper", "scissors"]
     await ctx.send("You chose {} | CPU chose {}".format(choice, random.choice(choices)))
+    
+@bot.command(pass_context=True)
+async def ud(ctx, *, msg):
+    """Pull data from Urban Dictionary. Use >help ud for more information.
+    Usage: >ud <term> - Search for a term on Urban Dictionary.
+    You can pick a specific result to use with >ud <term> | <result>.
+    If no result is specified, the first result will be used.
+        """
+    await ctx.message.delete()
+    number = 1
+    if " | " in msg:
+        msg, number = msg.rsplit(" | ", 1)
+    search = parse.quote(msg)
+    response = requests.get("http://api.urbandictionary.com/v0/define?term={}".format(search)).text
+    result = json.loads(response)
+    if result == "no_results":
+        await ctx.send( "{} couldn't be found on Urban Dictionary.".format(msg))
+    else:
+        try:
+            top_result = result["list"][int(number) - 1]
+            embed = discord.Embed(title=top_result["word"], description=top_result["definition"],
+                                    url=top_result["permalink"])
+            if top_result["example"]:
+                embed.add_field(name="Example:", value=top_result["example"])
+            if result == "tags":
+                embed.add_field(name="Tags:", value=" ".join(result["tags"]))
+            embed.set_author(name=top_result["author"],
+                                icon_url="https://lh5.ggpht.com/oJ67p2f1o35dzQQ9fVMdGRtA7jKQdxUFSQ7vYstyqTp-Xh-H5BAN4T5_abmev3kz55GH=w300")
+            number = str(int(number) + 1)
+            embed.set_footer(text="{} results were found. To see a different result, use ?ud {} {}.".format(
+                len(result["list"]), msg, number))
+            await ctx.send("", embed=embed)
+        except IndexError:
+            await ctx.send( "That result doesn't exist! Try ?ud {}.".format(msg))
         
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -806,7 +841,7 @@ async def help(ctx):
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
     embed.add_field(name='Fun Commands :', value=f'''neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
-    embed.add_field(name='search :', value=f''' youtube\n wikipedia\n ''', inline=False)
+    embed.add_field(name='search :', value=f''' youtube\n wikipedia\n UrdanDictionary\n''', inline=False)
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n''', inline=False)
     embed.add_field(name='Extra:', value=f''' feedback\n say : ecos you\n''', inline=False)
