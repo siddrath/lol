@@ -928,6 +928,16 @@ async def change_nickname(ctx, *, name: str = None):
 
     except Exception as err:
         await ctx.send(err)
+        
+@bot.command()
+async def uptime(ctx):
+    time = json.load(open('db/uptime.json', "r"))['uptimestats']
+    uptimeraw = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f")
+    uptime = datetime.datetime.utcnow() - uptimeraw
+    hours, remainder = divmod(int(uptime.total_seconds()), 3600)
+    minutes, seconds = divmod(remainder, 60)
+    days, hours = divmod(hours, 24)
+    await ctx.send(f"I've been running for **{days}** days, **{hours}** hours, **{minutes}** minutes, **{seconds}** seconds")
 
         
 @bot.command(pass_context=True)
