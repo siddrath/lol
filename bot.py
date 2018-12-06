@@ -37,10 +37,6 @@ class BAsics():
         await m.edit(content='**Pong! Took: {}ms**'.format(int(time)))
         await ctx.message.delete()
 
-    @commands.command(pass_contex=True)
-    async def invite(self, ctx):
-        ': Invite me '
-        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591')
 
     @commands.command()
     async def uptime(self,ctx):
@@ -854,16 +850,75 @@ async def youtube(ctx, *, query: str):
         message = 'Something went terribly wrong! [{}]'.format(e)
         await  ctx.send(message)
         
+@bot.command(aliases=['slots', 'bet'])
+@commands.cooldown(rate=1, per=3.0, type=commands.BucketType.user)
+async def slot(ctx):
+    """ Roll the slot machine """
+    emojis = "🍎🍊🍐🍋🍉🍇🍓🍒"
+    a = random.choice(emojis)
+    b = random.choice(emojis)
+    c = random.choice(emojis)
+
+    slotmachine = f"**[ {a} {b} {c} ]\n{ctx.author.name}**,"
+
+    if (a == b == c):
+        await ctx.send(f"{slotmachine} All matching, you won! 🎉")
+    elif (a == b) or (a == c) or (b == c):
+        await ctx.send(f"{slotmachine} 2 in a row, you won! 🎉")
+    else:
+        await ctx.send(f"{slotmachine} No match, you lost 😢")
+
+
+@bot.command(aliases=['howhot', 'hot'])
+async def hotcalc(ctx, *, user: discord.Member = None):
+    """ Returns a random percent for how hot is a discord user """
+    if user is None:
+        user = ctx.author
+
+    random.seed(user.id)
+    r = random.randint(1, 100)
+    hot = r / 1.17
+
+    emoji = "💔"
+    if hot > 25:
+        emoji = "❤"
+    if hot > 50:
+        emoji = "💖"
+    if hot > 75:
+        emoji = "💞"
+
+    await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
+
+@bot.command()
+async def password(ctx):
+    """ Generates a random password string for you """
+    if hasattr(ctx, 'guild') and ctx.guild is not None:
+        await ctx.send(f"Sending you a private message with your random generated password **{ctx.author.name}**")
+    await ctx.author.send(f"🎁 **Here is your password:**\n{secrets.token_urlsafe(18)}")
+
+@bot.command()
+async def reverse(ctx, *, text: str):
+    """ !poow ,ffuts esreveR
+    Everything you type after reverse will of course, be reversed
+    """
+    t_rev = text[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
+    await ctx.send(f"🔁 {t_rev}")
+
+@bot.command(aliases=['joinme', 'join', 'botinvite'])
+async def invite(ctx):
+    """ Invite me to your server """
+    await ctx.send(f"**{ctx.author.name}**, use this URL to invite me\n<{discord.utils.oauth_url(ctx.bot.user.id)}>")
+        
 @bot.command(pass_context=True)
 async def help(ctx):
     """: help commands"""
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
-    embed.add_field(name='Fun Commands :', value=f'''neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
+    embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n  neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
     embed.add_field(name='search :', value=f''' youtube\n wikipedia\n UrbanDictionary\n''', inline=False)
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n''', inline=False)
-    embed.add_field(name='Extra:', value=f''' feedback\n say : ecos you\n''', inline=False)
+    embed.add_field(name='Extra:', value=f''' feedback\n say : ecos you\n botinvitr\n password\n reverse\n''', inline=False)
     embed.set_footer(text = "Made by busy till 14th dec#2508", icon_url = 'https://images-ext-2.discordapp.net/external/UFMctyIrjdVox3mMvmyr-wgJhrPriKpmHvm-BgO4h1o/%3Fq%3Dtbn%3AANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw/https/encrypted-tbn0.gstatic.com/images')
     send = await ctx.send(embed=embed)
     
