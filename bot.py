@@ -971,6 +971,8 @@ async def on_command_error(ctx, err):
         await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
     if ctx.guild.id == 480246586279067650:
         await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 520203621485379584:
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
     else:
         return
     
