@@ -946,6 +946,14 @@ async def on_member_join(member):
     await member.send(f"{member.name}Welcome to {member.guild.name}") 
     
     
+@bot.event
+async def on_guild_join(guild):
+    general = find(lambda x: x.name == 'general',  guild.text_channels)
+    if general and general.permissions_for(guild.me).send_messages:
+        if general and general.permissions_for(guild.me).send_messages:
+            await general.send('Hello {}!'.format(guild.name))
+    
+    
         
 
 @bot.event
