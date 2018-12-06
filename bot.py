@@ -15,6 +15,9 @@ import json
 import ast
 from urllib import parse
 import secrets
+import time
+start_time = time.time()
+from utils.language import Language
 
 
 bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
@@ -39,13 +42,6 @@ class BAsics():
         await ctx.message.delete()
 
 
-    @commands.command()
-    async def uptime(self,ctx):
-        res = os.popen("uptime").read()
-        matches = re.findall(r"up (\d+) days, (\d+):(\d+)", res)
-        time = matches[0]
-        fmtime = "{0[0]} days, {0[1]} hours {0[2]} minutes".format(time)
-        await ctx.send(f'''```py\n{fmtime}```''')
         
    
 
@@ -909,6 +905,16 @@ async def reverse(ctx, *, text: str):
 async def invite(ctx):
     """ Invite me to your server """
     await ctx.send(f"**{ctx.author.name}**, use this URL to invite me\n<{discord.utils.oauth_url(ctx.bot.user.id)}>")
+    
+@bot.command()
+async def uptime(ctx):
+    """Displays how long the bot has been online for"""
+    second = time.time() - start_time
+    minute, second = divmod(second, 60)
+    hour, minute = divmod(minute, 60)
+    day, hour = divmod(hour, 24)
+    week, day = divmod(day, 7)
+    await ctx.send(Language.get("bot.uptime", ctx) % (week, day, hour, minute, second))
         
 @bot.command(pass_context=True)
 async def help(ctx):
