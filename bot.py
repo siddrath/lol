@@ -15,9 +15,7 @@ import json
 import ast
 from urllib import parse
 import secrets
-import time
-start_time = time.time()
-import Language
+
 
 
 bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
@@ -906,15 +904,26 @@ async def invite(ctx):
     """ Invite me to your server """
     await ctx.send(f"**{ctx.author.name}**, use this URL to invite me\n<{discord.utils.oauth_url(ctx.bot.user.id)}>")
     
-@bot.command()
-async def uptime(ctx):
-    """Displays how long the bot has been online for"""
-    second = time.time() - start_time
-    minute, second = divmod(second, 60)
-    hour, minute = divmod(minute, 60)
-    day, hour = divmod(hour, 24)
-    week, day = divmod(day, 7)
-    await ctx.send(Language.get("bot.uptime", ctx) % (week, day, hour, minute, second))
+@bot.command(name="username")
+async def change_username(ctx, *,name: str):
+    """ Change username. """
+    try:
+        await ctx.bot.user.edit(username=name)
+        await ctx.send(f"Successfully changed username to **{name}**")
+    except discord.HTTPException as err:
+        await ctx.send(err)
+
+@bot.command(name="nickname")
+async def change_nickname(ctx, *, name: str = None):
+    """ Change nickname. """
+    try:
+        await ctx.guild.me.edit(nick=name)
+        if name:
+            await ctx.send(f"Successfully changed nickname to **{name}**")
+        else:
+            await ctx.send("Successfully removed nickname")
+    except Exception as err:
+        await ctx.send(err)
         
 @bot.command(pass_context=True)
 async def help(ctx):
