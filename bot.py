@@ -933,7 +933,6 @@ async def change_nickname(ctx, *, name: str = None):
         
 @bot.command()
 async def uptime(ctx):
-    uptimeraw = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f")
     uptime = datetime.datetime.utcnow() - uptimeraw
     hours, remainder = divmod(int(uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
