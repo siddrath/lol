@@ -834,6 +834,25 @@ async def ud(ctx, *, msg):
             await ctx.send("", embed=embed)
         except IndexError:
             await ctx.send( "That result doesn't exist! Try ?ud {}.".format(msg))
+            
+@bot.command(pass_context=True, name='youtube', no_pm=True)
+async def youtube(ctx, *, query: str):
+    """Search on Youtube"""
+    try:
+        url = 'https://www.youtube.com/results?'
+        payload = {'search_query': ''.join(query)}
+        headers = {'user-agent': 'Red-cog/1.0'}
+        conn = aiohttp.TCPConnector()
+        session = aiohttp.ClientSession(connector=conn)
+        async with session.get(url, params=payload, headers=headers) as r:
+            result = await r.text()
+        session.close()
+        yt_find = re.findall(r'href=\"\/watch\?v=(.{11})', result)
+        url = 'https://www.youtube.com/watch?v={}'.format(yt_find[0])
+        await ctx.send (url)
+    except Exception as e:
+        message = 'Something went terribly wrong! [{}]'.format(e)
+        await  ctx.send(message)
         
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -842,7 +861,7 @@ async def help(ctx):
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
     embed.add_field(name='Fun Commands :', value=f'''neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
     embed.add_field(name='search :', value=f''' youtube\n wikipedia\n UrbanDictionary\n''', inline=False)
-    embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo''', inline=False)
+    embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n''', inline=False)
     embed.add_field(name='Extra:', value=f''' feedback\n say : ecos you\n''', inline=False)
     embed.set_footer(text = "Made by busy till 14th dec#2508", icon_url = 'https://images-ext-2.discordapp.net/external/UFMctyIrjdVox3mMvmyr-wgJhrPriKpmHvm-BgO4h1o/%3Fq%3Dtbn%3AANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw/https/encrypted-tbn0.gstatic.com/images')
