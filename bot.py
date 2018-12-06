@@ -17,7 +17,7 @@ from urllib import parse
 import secrets
 import time
 start_time = time.time()
-from utils.language import Language
+import Language
 
 
 bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
