@@ -916,14 +916,19 @@ async def change_username(ctx, *,name: str):
 @bot.command(name="nickname")
 async def change_nickname(ctx, *, name: str = None):
     """ Change nickname. """
-    try:
-        await ctx.guild.me.edit(nick=name)
-        if name:
-            await ctx.send(f"Successfully changed nickname to **{name}**")
-        else:
-            await ctx.send("Successfully removed nickname")
-    except Exception as err:
-        await ctx.send(err)
+    if ctx.message.author.guild_permissions.administrator or ctx.message.author.id == '411496838550781972':
+        try:
+            await ctx.guild.me.edit(nick=name)
+            if name:
+
+                await ctx.send(f"Successfully changed nickname to **{name}**")
+            else:
+                await ctx.send("Successfully removed nickname")
+   
+
+        except Exception as err:
+            await ctx.send(err)
+
         
 @bot.command(pass_context=True)
 async def help(ctx):
