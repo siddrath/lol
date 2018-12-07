@@ -932,11 +932,53 @@ async def change_nickname(ctx, *, name: str = None):
         await ctx.send(err)
         
         
+@bot.command(hidden=True)
+async def editmessage(ctx, id:int, *, newmsg:str):
+    """Edits a message sent by the bot"""
+    try:
+        msg = await ctx.channel.get_message(id)
+    except discord.errors.NotFound:
+        await ctx.send("Couldn't find a message with an ID of `{}` in this channel".format(id))
+        return
+    if msg.author != ctx.guild.me:
+        await ctx.send("That message was not sent by me")
+        return
+    await msg.edit(content=newmsg)
+    await ctx.send("edit af")
+    
+@bot.command(pass_context=True)
+async def add(ctx, name, url):
+    if ctx.message.author.guild_permissions.manage_emojis:
 
+    
+        await ctx.message.delete()
+        try:
+            response = requests.get(url)
+        except (requests.errors.MissingSchema, requests.errors.InvalidURL, requests.errors.InvalidSchema):
+            return await ctx.send("The URL you have provided is invalid.")
+        if response.status_code == 404:
+            return await ctx.send("The URL you have provided leads to a 404.")
+        elif url[-3:] not in ("png", "jpg") and url[-4:] != "jpeg":
+            return await ctx.send("Only PNG and JPEG format images work to add as emoji.")
+        emoji = await ctx.guild.create_custom_emoji(name=name, image=response.content)
+        await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
 
+@bot.command(pass_context=True)
+async def remove(ctx, name, url):
+    if ctx.message.author.guild_permissions.manage_emojis:
 
-        
-        
+        await ctx.message.delete()
+        emotes = [x for x in ctx.guild.emojis if x.name == name]
+        emote_length = len(emotes)
+        if not emotes:
+            return await ctx.send("No emotes with that name could be found on this server.")
+        for emote in emotes:
+            await emote.delete()
+        if emote_length == 1:
+            await ctx.send("Successfully removed the {} emoji!".format(name))
+        else:
+            await ctx.send("Successfully removed {} emoji with the name {}.".format(emote_length, name))
+             
 
         
 @bot.command(pass_context=True)
