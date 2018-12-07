@@ -1071,4 +1071,5 @@ async def on_ready():
 bot.add_cog(BAdmin())
 bot.add_cog(BAmath())
 bot.add_cog(BAsics())
+bot.add_cog(Google())
 bot.run(os.getenv('TOKEN'))
