@@ -15,6 +15,7 @@ import json
 import ast
 from urllib import parse
 import secrets
+from bs4 import BeautifulSoup
 
 
 
@@ -930,6 +931,71 @@ async def change_nickname(ctx, *, name: str = None):
     except Exception as err:
         await ctx.send(err)
         
+        
+@bot.command(pass_context=True)
+async def comic(ctx, *, comic=""):
+    """Pull comics from xkcd."""
+    if comic == "random":
+        randcomic = requests.get("https://c.xkcd.com/random/comic/".format(comic))
+        comic = randcomic.url.split("/")[-2]
+    site = requests.get("https://xkcd.com/{}/info.0.json".format(comic))
+    if site.status_code == 404:
+        site = None
+        found = None
+        search = parse.quote(comic)
+        result = requests.get("https://www.google.co.nz/search?&q={}+site:xkcd.com".format(search)).text
+        soup = BeautifulSoup(result, "html.parser")
+        links = soup.find_all("cite")
+        for link in links:
+            if link.text.startswith("https://xkcd.com/"):
+                found = link.text.split("/")[3]
+                break
+        if not found:
+            await ctx.send("That comic doesn't exist!")
+        else:
+            site = requests.get("https://xkcd.com/{}/info.0.json".format(found))
+            comic = found
+    if site:
+        json = site.json()
+        embed = discord.Embed(title="xkcd {}: {}".format(json["num"], json["title"]), url="https://xkcd.com/{}".format(comic))
+        embed.set_image(url=json["img"])
+        embed.set_footer(text="{}".format(json["alt"]))
+        await ctx.send("", embed=embed)
+
+@bot.command(pass_context=True)
+async def add(ctx, name, url):
+    if ctx.message.author.guild_permissions.manage_emojis:
+
+    
+        await ctx.message.delete()
+        try:
+            response = requests.get(url)
+        except (requests.errors.MissingSchema, requests.errors.InvalidURL, requests.errors.InvalidSchema):
+            return await ctx.send("The URL you have provided is invalid.")
+        if response.status_code == 404:
+            return await ctx.send("The URL you have provided leads to a 404.")
+        elif url[-3:] not in ("png", "jpg") and url[-4:] != "jpeg":
+            return await ctx.send("Only PNG and JPEG format images work to add as emoji.")
+        emoji = await ctx.guild.create_custom_emoji(name=name, image=response.content)
+        await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
+
+@bot.command(pass_context=True)
+async def remove(ctx, name, url):
+    if ctx.message.author.guild_permissions.manage_emojis:
+
+        await ctx.message.delete()
+        emotes = [x for x in ctx.guild.emojis if x.name == name]
+        emote_length = len(emotes)
+        if not emotes:
+            return await ctx.send("No emotes with that name could be found on this server.")
+        for emote in emotes:
+            await emote.delete()
+        if emote_length == 1:
+            await ctx.send("Successfully removed the {} emoji!".format(name))
+        else:
+            await ctx.send("Successfully removed {} emoji with the name {}.".format(emote_length, name))
+        
+        
 
         
 @bot.command(pass_context=True)
@@ -938,8 +1004,9 @@ async def help(ctx):
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
     embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
     embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n  neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
-    embed.add_field(name='search :', value=f''' youtube\n wikipedia\n UrbanDictionary\n''', inline=False)
+    embed.add_field(name='search :', value=f''' youtube\n wikipedia\n UrbanDictionary\n comic\n''', inline=False)
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll''', inline=False)
+    embed.add_field(name=' Emotes :', value=f''' add: usage ?add <name> <url>\n remove: ?remove <name> <url>''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n''', inline=False)
     embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n''', inline=False)
     embed.set_footer(text = "Made by Garry#2508", icon_url = 'https://images-ext-2.discordapp.net/external/UFMctyIrjdVox3mMvmyr-wgJhrPriKpmHvm-BgO4h1o/%3Fq%3Dtbn%3AANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw/https/encrypted-tbn0.gstatic.com/images')
