@@ -947,7 +947,7 @@ async def editmessage(ctx, id:int, *, newmsg:str):
     await ctx.send("edit af")
     
 @bot.command(pass_context=True)
-async def add(ctx, name, url):
+async def addemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
     
@@ -964,7 +964,7 @@ async def add(ctx, name, url):
         await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
 
 @bot.command(pass_context=True)
-async def remove(ctx, name, url):
+async def removeemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
         await ctx.message.delete()
