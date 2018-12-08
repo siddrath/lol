@@ -1010,6 +1010,27 @@ async def comic(ctx, *, comic=""):
         embed.set_footer(text="{}".format(json["alt"]))
         await ctx.send("", embed=embed)
 
+       
+@bot.command(aliases=['hban'], pass_context=True)
+async def hackban(ctx, user_id: int):
+    """Bans a user outside of the server."""
+    if ctx.author.permissions_in(ctx.channel).ban_members:
+        author = ctx.message.author
+        guild = author.guild
+
+        user = guild.get_member(user_id)
+        if user is not None:
+            await ctx.invoke(ctx.ban, user=user)
+            return
+
+
+        try:
+            await ctx.bot.http.ban(user_id, guild.id, 0)
+            await ctx.send("Done")
+        except discord.NotFound:
+            await ctx.message.edit('Invalid user ID was provided.')
+        except discord.errors.Forbidden:
+            await ctx.message.edit('Not enough permissions.')
              
 
         
