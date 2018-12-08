@@ -1045,7 +1045,7 @@ async def upvote(ctx):
 async def help(ctx):
     """: help commands"""
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
-    embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw')
+    embed.set_thumbnail(url='https://images-ext-2.discordapp.net/external/UFMctyIrjdVox3mMvmyr-wgJhrPriKpmHvm-BgO4h1o/%3Fq%3Dtbn%3AANd9GcRiLD8E514Rkvru1jpCWuGLsDACRSyvHSMDLqgPHYvS9lLSMcPhbw/https/encrypted-tbn0.gstatic.com/images')
     embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n  neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
     embed.add_field(name='search :', value=f''' youtube: usage ?youtube <search,url>\n wikipedia:usage ?wiki <query>\n UrbanDictionary: usage ?ud <search>\n comic:usage ?comic <search>\n''', inline=False)
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll''', inline=False)
