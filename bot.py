@@ -1066,9 +1066,7 @@ async def reload(ctx, extension):
 
         
 
-@bot.listen()
-async def on_member_join(member):
-    await member.send(f"{member.name}Welcome to {member.guild.name}") 
+ 
     
     
 @bot.event
