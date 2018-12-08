@@ -15,6 +15,7 @@ import json
 import ast
 from urllib import parse
 import secrets
+from bs4 import BeautifulSoup
 
 
 
@@ -978,6 +979,37 @@ async def removeemote(ctx, name, url):
             await ctx.send("Successfully removed the {} emoji!".format(name))
         else:
             await ctx.send("Successfully removed {} emoji with the name {}.".format(emote_length, name))
+            
+@bot.command(pass_context=True)
+async def comic(ctx, *, comic=""):
+    """Pull comics from xkcd."""
+    if comic == "random":
+        randcomic = requests.get("https://c.xkcd.com/random/comic/".format(comic))
+        comic = randcomic.url.split("/")[-2]
+    site = requests.get("https://xkcd.com/{}/info.0.json".format(comic))
+    if site.status_code == 404:
+        site = None
+        found = None
+        search = parse.quote(comic)
+        result = requests.get("https://www.google.co.nz/search?&q={}+site:xkcd.com".format(search)).text
+        soup = BeautifulSoup(result, "html.parser")
+        links = soup.find_all("cite")
+        for link in links:
+            if link.text.startswith("https://xkcd.com/"):
+                found = link.text.split("/")[3]
+                break
+        if not found:
+            await ctx.send("That comic doesn't exist!")
+        else:
+            site = requests.get("https://xkcd.com/{}/info.0.json".format(found))
+            comic = found
+    if site:
+        json = site.json()
+        embed = discord.Embed(title="xkcd {}: {}".format(json["num"], json["title"]), url="https://xkcd.com/{}".format(comic))
+        embed.set_image(url=json["img"])
+        embed.set_footer(text="{}".format(json["alt"]))
+        await ctx.send("", embed=embed)
+
              
 
         
