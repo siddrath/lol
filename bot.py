@@ -1032,7 +1032,14 @@ async def hackban(ctx, user_id: int):
         except discord.errors.Forbidden:
             await ctx.message.edit('Not enough permissions.')
              
-
+@bot.command(aliases=["vote", "daily"])
+@commands.cooldown(1, 3, commands.BucketType.user)
+async def upvote(ctx):
+    embed = discord.Embed(title="Upvote the Bot Here!")
+    embed.add_field(name="You haven't upvoted?", value="If you have not upvoted")
+    embed.add_field(name="Upvote Touka Here! ", value="[Upvote Touka](https://discordbots.org/bot/486093523024609292/vote)")
+    embed.set_footer(text = "Made by garry#2508", icon_url = 'https://cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?size=1024')
+    await ctx.send(embed=embed)
         
 @bot.command(pass_context=True)
 async def help(ctx):
