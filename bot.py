@@ -1057,6 +1057,26 @@ async def upvote(ctx):
     embed.add_field(name="Upvote Touka Here! ", value="[Upvote Touka](https://discordbots.org/bot/486093523024609292/vote)")
     embed.set_footer(text = "Made by garry#2508", icon_url = 'https://cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?size=1024')
     await ctx.send(embed=embed)
+    
+@bot.command(name="pg")
+async def pingrole(ctx, role: discord.Role, *, message):
+    """
+    Temporarily edits a role to be pingable, sends a message mentioning said role, then edits it to be
+    unpingable.
+
+    The role must be below my highest role.
+    """
+    if role.position >= ctx.guild.me.top_role.position:
+        return await ctx.send("I can't edit that role because it's above my highest role.")
+
+    try:
+        await role.edit(mentionable=True, reason=f'Pingrole by{ctx.author}')
+        await ctx.send(f'{role.mention}: {message}')
+    finally:
+        try:
+            await role.edit(mentionable=False, reason=f'Pingrole by {ctx.author}')
+        except discord.HTTPException:
+            pass 
         
 @bot.command(pass_context=True)
 async def help(ctx):
