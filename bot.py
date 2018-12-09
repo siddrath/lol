@@ -916,21 +916,38 @@ async def change_username(ctx, *,name: str):
     except discord.HTTPException as err:
         await ctx.send(err)
 
-@bot.command(name="nickname")
-async def change_nickname(ctx, *, name: str = None):
-    """ Change nickname. """
-
-    try:
-        await ctx.guild.me.edit(nick=name)
-        if name:
-
-            await ctx.send(f"Successfully changed nickname to **{name}**")
-        else:
-            await ctx.send("Successfully removed nickname")
+@bot.command(aliases=["nk"])
+async def nicknames(ctx, member: discord.Member, *, name: str = None):
+    """ Nicknames a user from the current server. """
+    if ctx.author.permissions_in(ctx.channel).manage_nicknames:
+        try:
+            await member.edit(nick=name, reason= f'''{ctx.author.name} from {ctx.guild.name} Changed by command''')
+            message = f"Changed **{member.name}'s** nickname to **{name}**"
+            if name is None:
+                message = f"Reset **{member.name}'s** nickname"
+            await ctx.send(message)
+        except Exception as e:
+            await ctx.send(e)
    
 
-    except Exception as err:
-        await ctx.send(err)
+@bot.command(pass_context = True)
+async def mute(ctx, member: discord.Member):
+     if ctx.message.author.guild_permissions.administrator or ctx.message.author.id == '411496838550781972':
+        role = discord.utils.get(ctx.guild.roles, name='Muted')
+        if not member:
+            await ctx.send("please specify a user")
+            return
+        await member.add_roles(role)
+        await ctx.send("member is muted")
+
+@bot.command(pass_context = True)
+async def unmute(ctx, member: discord.Member):
+     if ctx.message.author.guild_permissions.administrator or ctx.message.author.id == '411496838550781972':
+        role = discord.utils.get(ctx.guild.roles, name='Muted')
+        if not member:
+            await ctx.send("please specify a user")
+            return
+        await member.remove_roles(role)
         
         
 @bot.command(hidden=True)
