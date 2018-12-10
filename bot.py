@@ -1089,7 +1089,7 @@ async def help(ctx):
     embed.add_field(name=' Emotes :', value=f'''addemote : usage ?addemote <name> <url>\n removeemote : usage ?removeemote <name> <url>\n''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pg : pings a role usage ?pg @ admin<text>\n''', inline=False)
     embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n''', inline=False)
-    embed.set_footer(text = "Made by Garry#2508", icon_url =('https://cdn.nekos.life/neko/neko_231.png')
+    embed.set_footer(text = "Made by Garry#2508", icon_url ='https://cdn.nekos.life/neko/neko_231.png')
     send = await ctx.send(embed=embed)
     
     
