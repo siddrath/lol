@@ -1082,14 +1082,14 @@ async def pingrole(ctx, role: discord.Role, *, message):
 async def help(ctx):
     """: help commands"""
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
-    embed.set_thumbnail(url='https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+    embed.set_thumbnail(url='https://cdn.nekos.life/neko/neko_231.png')
     embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n  neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
     embed.add_field(name='search :', value=f''' youtube: usage ?youtube <search,url>\n wikipedia:usage ?wiki <query>\n UrbanDictionary: usage ?ud <search>\n comic:usage ?comic <search>\n''', inline=False)
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
     embed.add_field(name=' Emotes :', value=f'''addemote : usage ?addemote <name> <url>\n removeemote : usage ?removeemote <name> <url>\n''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pg : pings a role usage ?pg @ admin<text>\n''', inline=False)
     embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n''', inline=False)
-    embed.set_footer(text = "Made by Garry#2508", icon_url =('https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+    embed.set_footer(text = "Made by Garry#2508", icon_url =('https://cdn.nekos.life/neko/neko_231.png')
     send = await ctx.send(embed=embed)
     
     
