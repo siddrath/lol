@@ -1079,6 +1079,41 @@ async def pingrole(ctx, role: discord.Role, *, message):
             pass 
         
 @bot.command(pass_context=True)
+async def mods(ctx):
+    """
+    Shows mods in this server.
+
+    A mod is defined as a human in this server with the "Kick Members" permission, or is a Dogbot Moderator.
+    """
+    is_mod = lambda m: (m.guild_permissions.kick_members) and not m.bot
+    mods = [m for m in ctx.guild.members if is_mod(m)]
+
+    embed = discord.Embed(title='Moderators in ' + ctx.guild.name, color=discord.Color.blurple(),
+                            description=f'There are {len(mods)} mod(s) total in {ctx.guild.name}.')
+
+    for status in discord.Status:
+        those_mods = [m for m in mods if m.status is status]
+        if not those_mods:
+                continue
+        embed.add_field(name=str(status).title(), value='\n'.join(str(m) for m in those_mods))
+
+    await ctx.send(embed=embed) 
+    
+@bot.command(pass_context=True)
+async def online(ctx: commands.Context):
+    """
+    Show total online users on sever
+    """
+    guild = ctx.message.guild
+    online = [1 if m.status != discord.Status.offline else 0 for m in guild.members]
+    await ctx.send('{} users online'.format(sum(online)))
+    
+@bot.command()
+async def website(ctx):
+    """ Check out my source code <3 """
+    await ctx.send(f"**{ctx.bot.user}** check me out:\nhttps://balasaikumardon.wixsite.com/website")
+        
+@bot.command(pass_context=True)
 async def help(ctx):
     """: help commands"""
     embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour.dark_purple())
@@ -1088,7 +1123,7 @@ async def help(ctx):
     embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
     embed.add_field(name=' Emotes :', value=f'''addemote : usage ?addemote <name> <url>\n removeemote : usage ?removeemote <name> <url>\n''', inline=False)
     embed.add_field(name=' moderation:', value=f''' Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n Softwarn :softwarn a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pg : pings a role usage ?pg @ admin<text>\n''', inline=False)
-    embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n''', inline=False)
+    embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n website \n upvote ''', inline=False)
     embed.set_footer(text = "Made by Garry#2508", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
     send = await ctx.send(embed=embed)
     
