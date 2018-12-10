@@ -1096,7 +1096,7 @@ async def help(ctx):
     
 @bot.command(hidden=True)
 async def reload(ctx, extension):
-    if ctx.author.id == 411496838550781972:
+    if ctx.author.id == 411496838550781972 or 293800689266851850:
        try:
             bot.unload_extension(extension)
             bot.load_extension(extension)
