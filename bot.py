@@ -1111,7 +1111,7 @@ async def online(ctx: commands.Context):
 @bot.command()
 async def website(ctx):
     """ Check out my source code <3 """
-    await ctx.send(f"**{ctx.bot.user}** check me out:\nhttps://balasaikumardon.wixsite.com/website")
+    await ctx.send(f"**{ctx.author.name}** check me out:\nhttps://balasaikumardon.wixsite.com/website")
         
 @bot.command(pass_context=True)
 async def help(ctx):
