@@ -1174,7 +1174,7 @@ async def on_command_error(ctx, err):
 
 
     if isinstance(err, commands.CommandNotFound):
-        await ctx.send('no command found any problem with commands report to Garry#2508')
+        await ctx.send('No commands found. Check help for list of my commands ')
 
     elif isinstance(err, commands.MissingRequiredArgument):
         pass
