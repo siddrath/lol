@@ -1167,31 +1167,28 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_command_error(ctx, err):
-    if ctx.guild.id == 490190146843443201:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 457729395122241537 or ctx.guild.id == 453472827526479874 or ctx.guild.id == 509434069319155712 or ctx.guild.id == 494725137476616202 or ctx.guild.id == 490190146843443201:
         
-    if ctx.guild.id == 494725137476616202:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 453472827526479874:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 457729395122241537:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 509434069319155712:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 500572118396698624:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 457487658374135808:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 457318783951044609:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 515059024098754564:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 480246586279067650:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
-    if ctx.guild.id == 520203621485379584:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+
+        send_help = (commands.MissingRequiredArgument, commands.BadArgument, commands.TooManyArguments, commands.UserInputError, commands.CommandNotFound, commands.CommandInvokeError)
+
+
+    if isinstance(err, commands.CommandNotFound):
+        await ctx.send('no command found any problem with commands report to Garry#2508')
+
+    elif isinstance(err, commands.MissingRequiredArgument):
+        pass
+    
+    elif isinstance(err, commands.CommandOnCooldown):
+        await ctx.send(f'Please wait {err.retry_after:.2f}s')
+
+    elif isinstance(err, commands.MissingPermissions):
+        pass 
+            
     else:
-        return
+        print(''.join(traceback.format_exception(type(err), err, err.__traceback__)))
+
+
     
     
 @bot.event
