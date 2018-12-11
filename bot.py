@@ -963,8 +963,26 @@ async def editmessage(ctx, id:int, *, newmsg:str):
         return
     await msg.edit(content=newmsg)
     await ctx.send("edit af")
+  
+@bot.command(name='ceinfo')
+async def customemojiinfo(ctx, *, emoji: discord.Emoji):
+    """Display information for a custom emoji.
+
+    * emoji - The emoji to get information about."""
+
+    embed = discord.Embed(title=emoji.name)
+    embed.description = f"{emoji.id} | [Full image]({emoji.url})"
+
+    embed.add_field(name="Guild", value=f"{emoji.guild.name} ({emoji.guild.id})")
+    embed.add_field(name="Managed", value=emoji.managed)
+    embed.add_field(name="Created at", value=emoji.created_at.ctime())
+    url = emoji.url.replace('discordapp.com/api', 'cdn.discordapp.com')
+    embed.set_thumbnail(url=url)
+
+    await ctx.send(embed=embed) 
+
     
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,name='ademote')
 async def addemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
@@ -981,7 +999,7 @@ async def addemote(ctx, name, url):
         emoji = await ctx.guild.create_custom_emoji(name=name, image=response.content)
         await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,name='remote')
 async def removeemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
