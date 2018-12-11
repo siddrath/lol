@@ -1138,6 +1138,19 @@ async def servers(ctx):
         a.append(i.name)
         await ctx.send(", ".join(a))
         
+@bot.command(aliases=['roleinfo'])
+async def role(ctx, *, role: discord.Role):
+    """Retrieves information about a role in this guild."""
+    e = discord.Embed(color=role.color)
+    e.add_field(name='Name', value=role.name)
+    e.add_field(name='ID', value=role.id)
+    e.add_field(name='Role created', value=role.created_at.ctime())
+    e.add_field(name='Color', value=str(role.color).upper())
+    e.add_field(name='Properties', value='{}, {}'.format('Mentionable' if role.mentionable else 'Not mentionable', 'hoisted' if role.hoist else 'not hoisted'))
+    e.add_field(name='Members', value=len(role.members))
+    await ctx.send(embed=e)
+
+        
 @bot.command(pass_context=True)
 async def help(ctx):
     """: help commands"""
