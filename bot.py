@@ -1112,6 +1112,13 @@ async def online(ctx: commands.Context):
 async def website(ctx):
     """ Check out my source code <3 """
     await ctx.send(f"**{ctx.author.name}** check me out:\nhttps://balasaikumardon.wixsite.com/website")
+    
+@bot.command()
+async def servers(ctx):
+    a = []
+    for i in bot.guilds:
+        a.append(i.name)
+        await ctx.send(", ".join(a))
         
 @bot.command(pass_context=True)
 async def help(ctx):
