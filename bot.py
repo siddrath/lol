@@ -1149,6 +1149,35 @@ async def role(ctx, *, role: discord.Role):
     e.add_field(name='Properties', value='{}, {}'.format('Mentionable' if role.mentionable else 'Not mentionable', 'hoisted' if role.hoist else 'not hoisted'))
     e.add_field(name='Members', value=len(role.members))
     await ctx.send(embed=e)
+    
+@bot.command(pass_context=True)
+async def afk(ctx, txt: str = None):
+    """Set your Discord status for when you aren't online. Ex: [p]afk idle"""
+    with open('settings/optional_config.json', 'r+') as fp:
+        opt = json.load(fp)
+        usage = parse_prefix(ctx.bot, 'Options: ``idle``, ``dnd``, ``offline``. When the status is set, the bot will set you to this by default when you are not on Discord. Ex: [c]afk idle')
+        if txt:
+            if txt.strip() == 'idle':
+                opt['default_status'] = 'idle'
+                ctx.bot.default_status = 'idle'
+            elif txt.strip() == 'dnd' or txt.strip() == 'do not disturb':
+                opt['default_status'] = 'dnd'
+                ctx.bot.default_status = 'dnd'
+            elif txt.strip() == 'offline' or 'invis' in txt.strip() or txt.strip() == 'incognito':
+                opt['default_status'] = 'invisible'
+                ctx.bot.default_status = 'invisible'
+            else:
+                return await ctx.send('Invalid status.\n' + usage)
+        else:
+            if isinstance(ctx.message.author, discord.Member):
+                info = 'Current status returned by Discord: `{}` | Current Default status: `{}`\n'.format(str(ctx.message.author.status).title(), opt['default_status'].title())
+            else:
+                info = 'Current Default status: `{}`\n'.format(opt['default_status'].title())
+            return await ctx.send(info + usage)
+        fp.seek(0)
+        fp.truncate()
+        json.dump(opt, fp, indent=4)
+        await ctx.send('Set default afk status. You will now appear as ``{}`` when not on Discord.'.format(opt['default_status']))
 
         
 
@@ -1277,7 +1306,7 @@ async def on_guild_join(guild):
 @bot.event
 async def on_command_error(ctx, err):
     if ctx.guild.id == 453472827526479874 or 453583048504639505 or 457318783951044609 or 457487658374135808 or 457729395122241537 or 468908507782053899 or 474735368273395713 or 475961215168806923 or 480246586279067650 or 486461298805178368 or 490190146843443201 or 494725137476616202 or 498284867868557313 or 500572118396698624 or 507703335017512962 or 509434069319155712 or 513715362920005632 or 513900235391762446 or 515059024098754564 or 515473815560781824 or 517031325056761866 or 518083297650147329 or 518526295055794186 or 520144444050374657 or 520203621485379584 or 521287749236686848 or 521314129735188490:
-        
+        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
 
         send_help = (commands.MissingRequiredArgument, commands.BadArgument, commands.TooManyArguments, commands.UserInputError, commands.CommandNotFound, commands.CommandInvokeError)
 
