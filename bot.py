@@ -1166,7 +1166,7 @@ async def help(ctx, val =None):
     if val is None:
         embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
-        embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke\n kiss\n love\n pat\n slap\n wanted\n profile\n''', inline=False)
+        embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n neko\n dog\n pepe\n rps\n 8ball\n bite\n cuddle\n poke\n kiss\n love\n pat\n slap\n wanted\n profile\n''', inline=False)
         embed.add_field(name='search :', value=f''' youtube: play video from yt\n wikipedia: search a query\n UrbanDictionary: search meaing of word\n comic: search comic\n''', inline=False)
         embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n  avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
         embed.add_field(name=' Emotes :', value=f'''customemojiinfo : view custom emote\n addemote : add emote\n removeemote : remove emote\n''', inline=False)
