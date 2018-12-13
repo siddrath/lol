@@ -1157,20 +1157,20 @@ async def role(ctx, *, role: discord.Role):
 async def help(ctx, val =None):
     """: help commands"""
     if val is None:
-        embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
-        embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n  neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke \n  kiss\n love\n pat\n slap \n wanted\n profile\n ''', inline=False)
+        embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke\n kiss\n love\n pat\n slap\n wanted\n profile\n''', inline=False)
         embed.add_field(name='search :', value=f''' youtube: usage ?youtube <search,url>\n wikipedia:usage ?wiki <query>\n UrbanDictionary: usage ?ud <search>\n comic:usage ?comic <search>\n''', inline=False)
         embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
         embed.add_field(name=' Emotes :', value=f'''addemote : usage ?addemote <name> <url>\n removeemote : usage ?removeemote <name> <url>\n''', inline=False)
-        embed.add_field(name=' moderation:', value=f''' Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pg : pings a role usage ?pg @ admin<text>\n''', inline=False)
+        embed.add_field(name=' moderation:', value=f''' Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n roleinfo :Info a particular role \n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pg : pings a role usage ?pg @ admin<text>\n''', inline=False)
         embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n website \n upvote ''', inline=False)
-        embed.set_footer(text = "Made by Garry#2508", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+        embed.set_footer(text = "?help<command> for more help!", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         send = await ctx.send(embed=embed)
 
 
     elif val == 'ban':
-        embed = discord.Embed(title=f'''Ban command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Ban command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?ban <user or user.id> <reason>", inline=False)
         embed.add_field(name="Example", value="?ban @garry#2508 hi\n ?ban 411496838550781972 hi", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1178,7 +1178,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'unban':
-        embed = discord.Embed(title=f'''Unban command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Unban command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?unban <user.id> ", inline=False)
         embed.add_field(name="Example", value="?unban 411496838550781972 ", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1186,7 +1186,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'hackban':
-        embed = discord.Embed(title=f'''Hackban command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Hackban command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?hban <user.id> ", inline=False)
         embed.add_field(name="Example", value="?hban 411496838550781972 ", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1194,7 +1194,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'kick':
-        embed = discord.Embed(title=f'''kick command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''kick command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?kick <user.id or user> ", inline=False)
         embed.add_field(name="Example", value="?kick 411496838550781972 hi\n ?kick @garry#2508 hi ", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1202,7 +1202,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'warn':
-        embed = discord.Embed(title=f'''Warn command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Warn command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?warn <user> ", inline=False)
         embed.add_field(name="Example", value="?warn @garry#2508 hi ", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1210,7 +1210,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'youtube':
-        embed = discord.Embed(title=f'''Youtube command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Youtube command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?youtube <search or url> ", inline=False)
         embed.add_field(name="Example", value="?youtube shape of you\n ?youtube https://youtu.be/hA6hldpSTF8 ", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1218,7 +1218,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'wikipedia':
-        embed = discord.Embed(title=f'''Wiki command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Wiki command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="Allias", value="wiki or wikipedia ", inline=False)
         embed.add_field(name="usage", value="?wiki <search> ", inline=False)
         embed.add_field(name="Example", value="?wiki pokemon ", inline=False)
@@ -1227,7 +1227,7 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'urbandictionary':
-        embed = discord.Embed(title=f'''Urbandictionary command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Urbandictionary command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="Allias", value="ud or urbandictionary ", inline=False)
         embed.add_field(name="usage", value="?ud <word> ", inline=False)
         embed.add_field(name="Example", value="?ud flower\n ?urbandictionary flower ", inline=False)
@@ -1236,9 +1236,57 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
     elif val == 'comic':
-        embed = discord.Embed(title=f'''Comic command''', description=f'''prefix : ?''',color=discord.Colour(0xba4b5b))
+        embed = discord.Embed(title=f'''Comic command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="usage", value="?comic <search> ", inline=False)
         embed.add_field(name="Example", value="?comic die ", inline=False)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
+        embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+        await ctx.send(embed=embed)
+
+    elif val == 'customemojiinfo':
+        embed = discord.Embed(title=f'''Customemoji command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
+        embed.add_field(name="Allias", value="ceinfo or customemojiinfo ", inline=False)
+        embed.add_field(name="usage", value="?ceinfo <emoji> ", inline=False)
+        embed.add_field(name="Example", value="?ud :hi:\n ?customemojiinfo :hi: ", inline=False)
+        embed.add_field(name="Note", value="it only info customemoji of bot running servers", inline=False)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
+        embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+        await ctx.send(embed=embed)
+
+    elif val == 'customemojiinfo':
+        embed = discord.Embed(title=f'''Customemoji command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
+        embed.add_field(name="Allias", value="ceinfo or customemojiinfo ", inline=False)
+        embed.add_field(name="usage", value="?ceinfo <emoji> ", inline=False)
+        embed.add_field(name="Example", value="?ceinfo :hi:\n ?customemojiinfo :hi: ", inline=False)
+        embed.add_field(name="Note", value="it only info customemoji not default discord emotes", inline=False)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
+        embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+        await ctx.send(embed=embed)
+
+    elif val == 'addemote':
+        embed = discord.Embed(title=f'''Add emote command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
+        embed.add_field(name="Allias", value="addemote or ademote ", inline=False)
+        embed.add_field(name="usage", value="?addemote <name> <url> ", inline=False)
+        embed.add_field(name="Example", value="?addemote hi https://cdn.discordapp.com/emojis/490837341296918529.png\n ", inline=False)
+        embed.add_field(name="Note", value="only png and jpg format is supported", inline=False)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
+        embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+        await ctx.send(embed=embed)
+
+    elif val == 'removeemote':
+        embed = discord.Embed(title=f'''Remove emote command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
+        embed.add_field(name="Allias", value="removeemote or remote ", inline=False)
+        embed.add_field(name="usage", value="?remote <name> <url> ", inline=False)
+        embed.add_field(name="Example", value="?remote hi https://cdn.discordapp.com/emojis/490837341296918529.png\n ", inline=False)
+        embed.add_field(name="Note", value="remove :hi:, should be hi", inline=False)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
+        embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
+        await ctx.send(embed=embed)
+
+    elif val == 'roleinfo':
+        embed = discord.Embed(title=f'''Roleinfo command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
+        embed.add_field(name="usage", value="?roleinfo @role ", inline=False)
+        embed.add_field(name="Example", value="?roleinfo @bots ", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
         embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         await ctx.send(embed=embed)
@@ -1248,7 +1296,7 @@ async def help(ctx, val =None):
     
 @bot.command(hidden=True)
 async def reload(ctx, extension):
-    if ctx.author.id == 411496838550781972 or 293800689266851850:
+    if ctx.author.id == 411496838550781972:
        try:
             bot.unload_extension(extension)
             bot.load_extension(extension)
