@@ -1160,7 +1160,7 @@ async def help(ctx, val =None):
         embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
         embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n neko\n cat\n pepe\n rps\n 8ball\n bite\n cuddle\n poke\n kiss\n love\n pat\n slap\n wanted\n profile\n''', inline=False)
-        embed.add_field(name='search :', value=f''' youtube: usage ?youtube <search,url>\n wikipedia:usage ?wiki <query>\n UrbanDictionary: usage ?ud <search>\n comic:usage ?comic <search>\n''', inline=False)
+        embed.add_field(name='search :', value=f''' youtube: play video from yt\n wikipedia: search a query\n UrbanDictionary:search meaing of word\n comic:search comic\n''', inline=False)
         embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n server\n avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
         embed.add_field(name=' Emotes :', value=f'''addemote : usage ?addemote <name> <url>\n removeemote : usage ?removeemote <name> <url>\n''', inline=False)
         embed.add_field(name=' moderation:', value=f''' Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n roleinfo :Info a particular role \n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pg : pings a role usage ?pg @ admin<text>\n''', inline=False)
