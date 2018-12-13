@@ -16,6 +16,8 @@ import ast
 from urllib import parse
 import secrets
 from bs4 import BeautifulSoup
+datetime_format = '%Y-%m-%d %I:%M %p UTC'
+blurple = discord.Color.blurple()
 
 
 
