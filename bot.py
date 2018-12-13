@@ -1138,6 +1138,24 @@ async def servers(ctx):
         a.append(i.name)
         await ctx.send(", ".join(a))
         
+@bot.command()
+async def addrole(ctx, member: discord.Member, role: discord.Role):
+    if ctx.author.permissions_in(ctx.channel).kick_members or ctx.author.permissions_in(ctx.channel).manage_messages:
+        await member.add_roles(role)
+        await ctx.send("role has been added")
+    else:
+        e = discord.Embed(title='Denied', colour=discord.Colour.gold(), description=f'''{ctx.author.mention} you aren't eligible for this''')
+        await ctx.send(embed=e)
+
+@bot.command()
+async def removerole(ctx, member: discord.Member, role: discord.Role):
+    if ctx.author.permissions_in(ctx.channel).kick_members or ctx.author.permissions_in(ctx.channel).manage_messages:
+        await member.remove_roles(role)
+        await ctx.send("role has been removed")
+    else:
+        e = discord.Embed(title='Denied', colour=discord.Colour.gold(), description=f'''{ctx.author.mention} you aren't eligible for this''')
+        await ctx.send(embed=e)
+        
 @bot.command(aliases=['roleinfo'])
 async def role(ctx, *, role: discord.Role):
     """Retrieves information about a role in this guild."""
@@ -1170,7 +1188,7 @@ async def help(ctx, val =None):
         embed.add_field(name='search :', value=f''' youtube: play video from yt\n wikipedia: search a query\n UrbanDictionary: search meaing of word\n comic: search comic\n''', inline=False)
         embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n  avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
         embed.add_field(name=' Emotes :', value=f'''customemojiinfo : view custom emote\n addemote : add emote\n removeemote : remove emote\n''', inline=False)
-        embed.add_field(name=' moderation:', value=f'''nicknames : change nick of users Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n roleinfo :Info a particular role\n createrole : create a role with colour\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pingrole : pings a role\n''', inline=False)
+        embed.add_field(name=' moderation:', value=f'''nicknames : change nick of users Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n roleinfo :Info a particular role\n createrole : create a role with colour\n addrole : add role to user\n removerole : remove role from user\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pingrole : pings a role\n''', inline=False)
         embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n website \n upvote ''', inline=False)
         embed.set_footer(text = "?help<command> for more help!", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         send = await ctx.send(embed=embed)
