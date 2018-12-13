@@ -1379,7 +1379,6 @@ async def on_command_error(ctx, err):
 
 
     
-    
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name="playing ?help",type=1))
