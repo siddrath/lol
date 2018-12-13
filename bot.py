@@ -60,6 +60,7 @@ class BAsics():
         embed.add_field(name='Online Members :',
                         value=f'''{len([I for I in guild.members if I.status is discord.Status.online])}''',inline=False)
         embed.add_field(name='Server Channel :', value=f'''  {len(guild.channels)}''', inline=False)
+        embed.add_field(name='Emoji :', value=f'''{len(guild.emojis)}''', inline=False)
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
