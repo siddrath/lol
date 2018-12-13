@@ -462,13 +462,8 @@ async def userinfo(ctx, *, member: discord.Member = None):
         e.add_field(name='Bot Created' if member.bot else 'User Joined Discord', value=member.created_at.strftime(datetime_format))
         e.add_field(name='Joined Guild', value=member.joined_at.strftime(datetime_format))
         e.add_field(name="Highest Role",value=member.top_role.mention)
-        e.add_field(name="Join Position",value=f"#{sorted(member.guild.members, key=lambda m: m.joined_at).index(member) + 1}")
-            
-        e.add_field(name='Status and Activity', value='{}, {}'.format(
-            'DND' if member.status is discord.Status.dnd else str(member.status).title(),
-            'no activity' if member.activity is None else '{} {}'.format('listening to' if member.activity.type == discord.ActivityType.listening else member.activity.type.name, member.activity.name)
-        ), inline=False)
-            
+        e.add_field(name="Join Position",value=f"#{sorted(member.guild.members, key=lambda m: m.joined_at).index(member) + 1}")   
+        e.add_field(name='Status and Activity', value='{}, {}'.format('DND' if member.status is discord.Status.dnd else str(member.status).title(),'no activity' if member.activity is None else '{} {}'.format('listening to' if member.activity.type == discord.ActivityType.listening else member.activity.type.name, member.activity.name)), inline=False)  
         e.add_field(name='Roles', value=', '.join(role.name for role in reversed(member.roles[1:])) or 'None', inline=False)
         e.add_field(name='Icon URL', value=icon_url, inline=False)
         await ctx.send(embed=e)
