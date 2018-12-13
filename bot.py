@@ -295,7 +295,7 @@ async def code(ctx, command):
         await ctx.send(embed=embed)
 
 
-@bot.command(pass_context = True)
+@bot.command(pass_context = True,no_pm=True)
 async def say(ctx, *args):
     mesg = ' '.join(args)
     await ctx.message.delete()
@@ -303,7 +303,7 @@ async def say(ctx, *args):
     return await ctx.send(mesg)
 
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def pepe(ctx, user: discord.Member = None):
     """kiss someone!"""
     user = user or ctx.message.author
@@ -411,7 +411,7 @@ async def pepe(ctx, user: discord.Member = None):
 
 
     await ctx.send(embed=embed)
-@bot.command(pass_context=True, name='wikipedia', aliases=['wiki', 'w'])
+@bot.command(pass_context=True, name='wikipedia', aliases=['wiki', 'w'],no_pm=True)
 async def wikipedia(ctx, *, query: str):
     """
     Get information from Wikipedia
@@ -447,7 +447,7 @@ async def wikipedia(ctx, *, query: str):
         await ctx.send('```{}```'.format(message))
         
             
-@bot.command(aliases=['whois'])
+@bot.command(aliases=['whois'],no_pm=True)
 async def userinfo(ctx, *, member: discord.Member = None):
     """
     Retrieve information about a member of the guild.
@@ -471,7 +471,7 @@ async def userinfo(ctx, *, member: discord.Member = None):
         await ctx.send(embed=e)
     
 
-@bot.command()
+@bot.command(no_pm=True)
 async def feedback(ctx, * , feedback):
     channel = bot.get_channel(519136306853314560)
     embed = discord.Embed(title="Feedback Submission :robot:", colour=discord.Colour.red(), description=f'''Submitted by- {ctx.author}''')
@@ -481,7 +481,7 @@ async def feedback(ctx, * , feedback):
     await ctx.send("Your Feedback Has Been Submitted")
 
 
-@bot.command()
+@bot.command(no_pm=True)
 async def poll(ctx, *, poll_message):
         embed = discord.Embed(title=f'''{ctx.author}'s new poll''', colour=discord.Colour.red(), description=poll_message)
         try:
@@ -502,7 +502,7 @@ async def poll(ctx, *, poll_message):
 
 
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def bite(ctx, member: discord.Member):
     """bites  someone!"""
     author = ctx.message.author.mention
@@ -527,7 +527,7 @@ async def bite(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def cuddle(ctx, member: discord.Member):
     """cuddle  someone!"""
     author = ctx.message.author.mention
@@ -553,7 +553,7 @@ async def cuddle(ctx, member: discord.Member):
     await ctx.send(embed=embed)
 
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def pat(ctx, member: discord.Member):
     """pat someone!"""
     author = ctx.message.author.mention
@@ -578,7 +578,7 @@ async def pat(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def kiss(ctx, member: discord.Member):
     """kiss someone!"""
     author = ctx.message.author.mention
@@ -602,7 +602,7 @@ async def kiss(ctx, member: discord.Member):
     embed.set_image(url=image)
 
     await ctx.send(embed=embed)
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def poke(ctx, member: discord.Member):
     """poke someone!"""
     author = ctx.message.author.mention
@@ -624,7 +624,7 @@ async def poke(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def hug(ctx, member: discord.Member):
     """hug someone!"""
     author = ctx.message.author.mention
@@ -649,7 +649,7 @@ async def hug(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def slap(ctx, member: discord.Member):
     """Slap someone!"""
     author = ctx.message.author.mention
@@ -676,7 +676,7 @@ async def slap(ctx, member: discord.Member):
     
 
         
-@bot.command()
+@bot.command(no_pm=True)
 async def dog(ctx):
     ''''sends cute dog pics'''
     r = requests.get("https://dog.ceo/api/breeds/image/random").json()
@@ -686,7 +686,7 @@ async def dog(ctx):
     
 
  
-@bot.command()
+@bot.command(no_pm=True)
 async def neko(ctx):
     ''''sends cute nekos'''
     r = requests.get("https://nekos.life/api/neko").json()
@@ -723,7 +723,7 @@ async def _kill(ctx, victim: discord.Member):
         message = str(random.choice(choices)).format(victim=victim.display_name, killer=author.display_name)
         await ctx.send(message)
 
-@bot.command()
+@bot.command(no_pm=True)
 async def ban(ctx, member: discord.Member, *, reason):
     if ctx.author.permissions_in(ctx.channel).ban_members:
         if reason is None:
@@ -750,7 +750,7 @@ async def ban(ctx, member: discord.Member, *, reason):
         message = await ctx.send(f'''{ctx.author.mention} you are not eligible for this''', delete_after= 3)
         await message.add_reaction('\u2623') 
         
-@bot.command()
+@bot.command(no_pm=True)
 async def unban(ctx, userid: int):
     """:unban member using userid"""
     if ctx.author.permissions_in(ctx.channel).ban_members:
@@ -785,7 +785,7 @@ async def botinfo(ctx):
 
 
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def joined_at(ctx, member: discord.Member = None):
     if member is None:
         member = ctx.message.author
@@ -795,13 +795,13 @@ async def joined_at(ctx, member: discord.Member = None):
         em.add_field(name='Member', value=f'''{member} joined at {member.joined_at}''', inline=False)
         await ctx.send(embed=em)
         
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def rps(ctx, choice):
     """"""
     choices = ["rock", "paper", "scissors"]
     await ctx.send("You chose {} | CPU chose {}".format(choice, random.choice(choices)))
     
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def ud(ctx, *, msg):
     """Pull data from Urban Dictionary. Use >help ud for more information.
     Usage: >ud <term> - Search for a term on Urban Dictionary.
@@ -854,7 +854,7 @@ async def youtube(ctx, *, query: str):
         message = 'Something went terribly wrong! [{}]'.format(e)
         await  ctx.send(message)
         
-@bot.command(aliases=['slots', 'bet'])
+@bot.command(aliases=['slots', 'bet'],no_pm=True)
 @commands.cooldown(rate=1, per=3.0, type=commands.BucketType.user)
 async def slot(ctx):
     """ Roll the slot machine """
@@ -873,7 +873,7 @@ async def slot(ctx):
         await ctx.send(f"{slotmachine} No match, you lost 😢")
 
 
-@bot.command(aliases=['howhot', 'hot'])
+@bot.command(aliases=['howhot', 'hot'],no_pm=True)
 async def hotcalc(ctx, *, user: discord.Member = None):
     """ Returns a random percent for how hot is a discord user """
     if user is None:
@@ -893,14 +893,14 @@ async def hotcalc(ctx, *, user: discord.Member = None):
 
     await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
 
-@bot.command()
+@bot.command(no_pm=True)
 async def password(ctx):
     """ Generates a random password string for you """
     if hasattr(ctx, 'guild') and ctx.guild is not None:
         await ctx.send(f"Sending you a private message with your random generated password **{ctx.author.name}**")
     await ctx.author.send(f"🎁 **Here is your password:**\n{secrets.token_urlsafe(18)}")
 
-@bot.command()
+@bot.command(no_pm=True)
 async def reverse(ctx, *, text: str):
     """ !poow ,ffuts esreveR
     Everything you type after reverse will of course, be reversed
@@ -913,7 +913,7 @@ async def invite(ctx):
     """ Invite me to your server """
     await ctx.send(f"**{ctx.author.name}**, use this URL to invite me\n<{discord.utils.oauth_url(ctx.bot.user.id)}>")
     
-@bot.command(name="username")
+@bot.command(name="username",no_pm=True)
 async def change_username(ctx, *,name: str):
     """ Change username. """
     try:
@@ -922,7 +922,7 @@ async def change_username(ctx, *,name: str):
     except discord.HTTPException as err:
         await ctx.send(err)
 
-@bot.command(aliases=["nk"])
+@bot.command(aliases=["nk"],no_pm=True)
 async def nicknames(ctx, member: discord.Member, *, name: str = None):
     """ Nicknames a user from the current server. """
     if ctx.author.permissions_in(ctx.channel).manage_nicknames:
@@ -936,7 +936,7 @@ async def nicknames(ctx, member: discord.Member, *, name: str = None):
             await ctx.send(e)
    
 
-@bot.command(pass_context = True)
+@bot.command(pass_context = True,no_pm=True)
 async def mute(ctx, member: discord.Member):
      if ctx.message.author.guild_permissions.administrator or ctx.message.author.id == '411496838550781972':
         role = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -946,7 +946,7 @@ async def mute(ctx, member: discord.Member):
         await member.add_roles(role)
         await ctx.send("member is muted")
 
-@bot.command(pass_context = True)
+@bot.command(pass_context = True,no_pm=True)
 async def unmute(ctx, member: discord.Member):
      if ctx.message.author.guild_permissions.administrator or ctx.message.author.id == '411496838550781972':
         role = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -970,7 +970,7 @@ async def editmessage(ctx, id:int, *, newmsg:str):
     await msg.edit(content=newmsg)
     await ctx.send("edit af")
   
-@bot.command(name='ceinfo')
+@bot.command(name='ceinfo'no_pm=True)
 async def customemojiinfo(ctx, *, emoji: discord.Emoji):
     """Display information for a custom emoji.
 
@@ -988,7 +988,7 @@ async def customemojiinfo(ctx, *, emoji: discord.Emoji):
     await ctx.send(embed=embed) 
 
     
-@bot.command(pass_context=True,name='ademote')
+@bot.command(pass_context=True,name='ademote',no_pm=True)
 async def addemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
@@ -1005,7 +1005,7 @@ async def addemote(ctx, name, url):
         emoji = await ctx.guild.create_custom_emoji(name=name, image=response.content)
         await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
 
-@bot.command(pass_context=True,name='remote')
+@bot.command(pass_context=True,name='remote',no_pm=True)
 async def removeemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
@@ -1021,7 +1021,7 @@ async def removeemote(ctx, name, url):
         else:
             await ctx.send("Successfully removed {} emoji with the name {}.".format(emote_length, name))
             
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def comic(ctx, *, comic=""):
     """Pull comics from xkcd."""
     if comic == "random":
@@ -1052,7 +1052,7 @@ async def comic(ctx, *, comic=""):
         await ctx.send("", embed=embed)
 
        
-@bot.command(aliases=['hban'], pass_context=True)
+@bot.command(aliases=['hban'], pass_context=True,no_pm=True)
 async def hackban(ctx, user_id: int):
     """Bans a user outside of the server."""
     if ctx.author.permissions_in(ctx.channel).ban_members:
@@ -1082,7 +1082,7 @@ async def upvote(ctx):
     embed.set_footer(text = "Made by garry#2508", icon_url = 'https://cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?size=1024')
     await ctx.send(embed=embed)
     
-@bot.command(name="pg")
+@bot.command(name="pg",no_pm=True)
 async def pingrole(ctx, role: discord.Role, *, message):
     """
     Temporarily edits a role to be pingable, sends a message mentioning said role, then edits it to be
@@ -1102,7 +1102,7 @@ async def pingrole(ctx, role: discord.Role, *, message):
         except discord.HTTPException:
             pass 
         
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def mods(ctx):
     """
     Shows mods in this server.
@@ -1123,7 +1123,7 @@ async def mods(ctx):
 
     await ctx.send(embed=embed) 
     
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,no_pm=True)
 async def online(ctx: commands.Context):
     """
     Show total online users on sever
@@ -1144,7 +1144,7 @@ async def servers(ctx):
         a.append(i.name)
         await ctx.send(", ".join(a))
         
-@bot.command()
+@bot.command(no_pm=True)
 async def addrole(ctx, member: discord.Member, role: discord.Role):
     if ctx.author.permissions_in(ctx.channel).kick_members or ctx.author.permissions_in(ctx.channel).manage_messages:
         await member.add_roles(role)
@@ -1153,7 +1153,7 @@ async def addrole(ctx, member: discord.Member, role: discord.Role):
         e = discord.Embed(title='Denied', colour=discord.Colour.gold(), description=f'''{ctx.author.mention} you aren't eligible for this''')
         await ctx.send(embed=e)
 
-@bot.command()
+@bot.command(no_pm=True)
 async def removerole(ctx, member: discord.Member, role: discord.Role):
     if ctx.author.permissions_in(ctx.channel).kick_members or ctx.author.permissions_in(ctx.channel).manage_messages:
         await member.remove_roles(role)
@@ -1162,7 +1162,7 @@ async def removerole(ctx, member: discord.Member, role: discord.Role):
         e = discord.Embed(title='Denied', colour=discord.Colour.gold(), description=f'''{ctx.author.mention} you aren't eligible for this''')
         await ctx.send(embed=e)
         
-@bot.command(aliases=['roleinfo'])
+@bot.command(aliases=['roleinfo'],no_pm=True)
 async def role(ctx, *, role: discord.Role):
     """Retrieves information about a role in this guild."""
     e = discord.Embed(color=role.color)
@@ -1174,7 +1174,7 @@ async def role(ctx, *, role: discord.Role):
     e.add_field(name='Members', value=len(role.members))
     await ctx.send(embed=e)
     
-@bot.command()
+@bot.command(no_pm=True)
 async def createrole(ctx, colour: str, role_name:str=None):
     try:
         await ctx.guild.create_role(name=(colour if not role_name else role_name), colour=discord.Colour(eval('0x0{}'.format(colour.lstrip("#").lstrip("0x")))))
