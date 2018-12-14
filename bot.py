@@ -1190,12 +1190,12 @@ async def help(ctx, val =None):
     if val is None:
         embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
-        embed.add_field(name='Fun Commands :', value=f'''howhot\n hot\n bet\n neko\n dog\n pepe\n rps\n 8ball\n bite\n cuddle\n poke\n kiss\n love\n pat\n slap\n wanted\n profile\n''', inline=False)
-        embed.add_field(name='search :', value=f''' youtube: play video from yt\n wikipedia: search a query\n UrbanDictionary: search meaing of word\n comic: search comic\n''', inline=False)
-        embed.add_field(name=' server :', value=f'''Serverinfo \n invite\n  avatar\n userinfo\n poll\n online: check online count of server\n mods : check list of mods of server''', inline=False)
-        embed.add_field(name=' Emotes :', value=f'''customemojiinfo : view custom emote\n addemote : add emote\n removeemote : remove emote\n''', inline=False)
-        embed.add_field(name=' moderation:', value=f'''nicknames : change nick of users Ban :bans user\n hackban : bans user outside the server\n Unban : unbans user\n Kick : kick member\n Warn : warns a person\n roleinfo :Info a particular role\n createrole : create a role with colour\n addrole : add role to user\n removerole : remove role from user\n prune :Prune the inactive members\npurge : Delete messages\n estimatedprune :Estimate the inactive members to prune\n pingrole : pings a role\n''', inline=False)
-        embed.add_field(name='Extra:', value=f''' feedback: report me bugs\n say : ecos you\n botinvite : invite me to your server\n password: generates random password\n reverse: reverse's the word u entred\n website \n upvote ''', inline=False)
+        embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile`''', inline=False)
+        embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `UrbanDictionary` `comic`''', inline=False)
+        embed.add_field(name=' server :', value=f''' `Serverinfo` `invite` `avatar` `userinfo` `poll` `online` `mods`''', inline=False)
+        embed.add_field(name=' Emotes :', value=f''' `customemojiinfo` `addemote` `removeemote` ''', inline=False)
+        embed.add_field(name=' moderation:', value=f''' `nicknames` `Ban` `hackban` `Unban` `Kick` `Warn` `roleinfo` `createrole : create a role with colour` `addrole` `removerole` `prune` `purge` `pingrole` ''', inline=False)
+        embed.add_field(name='Extra:', value=f''' `feedback` `say` `botinvite` `password` `reverse` `website` `upvote` ''', inline=False)
         embed.set_footer(text = "?help<command> for more help!", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         send = await ctx.send(embed=embed)
 
