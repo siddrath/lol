@@ -23,7 +23,7 @@ blurple = discord.Color.blurple()
 
 
 
-bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
+bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?','p?'))
 bot.remove_command('help')
 
 
@@ -1251,7 +1251,7 @@ async def createrole(ctx, colour: str, role_name:str=None):
 async def help(ctx, val =None):
     """: help commands"""
     if val is None:
-        embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0x69FCFC))
+        embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ? ''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
         embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `cat` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile` `shit`''', inline=False)
         embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `UrbanDictionary` `comic`''', inline=False)
