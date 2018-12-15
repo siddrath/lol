@@ -23,7 +23,7 @@ blurple = discord.Color.blurple()
 
 
 
-bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?','p?'))
+bot = commands.Bot(description='utlity can do a lot more.....', command_prefix=commands.when_mentioned_or('?'))
 bot.remove_command('help')
 
 
