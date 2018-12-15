@@ -408,9 +408,71 @@ async def pepe(ctx, user: discord.Member = None):
     embed = discord.Embed(description=f"""{user.name}""", colour=discord.Colour(0xba4b5b))
     embed.add_field(name=' Random', value=f''' ~~pepe~~''', inline=False)
     embed.set_image(url=image)
-
-
     await ctx.send(embed=embed)
+    
+    
+@bot.command(pass_context=True)
+async def cat(ctx, user: discord.Member = None):
+    """kiss someone!"""
+    user = user or ctx.message.author
+
+    
+    choices = ["https://cdn.discordapp.com/attachments/523354802437095424/523420198355730464/cat-Hytkq4NFM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420209462116372/cat-r1gUzqVEYf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420225845067777/cat-SJ2fc44YM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420230953730058/cat-SJbnGcN4KM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420241078779924/cat-rJWcG5N4KM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420282657177602/cat-r1gxAtE4Fz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420295651000320/cat-ByRhtN4tM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420302483521540/cat-SJZJ7qNEYG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420312218501120/cat-B1xwMqN4tz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420322058469378/cat-HkdaK4NKz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420339481346050/cat-S1DpYVNFG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420347945713704/cat-SyfIGc4Ntz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420356707352590/cat-HJz6z94VYf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420394540105739/cat-SJ2fc44YM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420413355753483/cat-B1xZmcVNKz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420417558315009/cat-SylB0KNEFz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420421777915925/cat-SkWzatV4tz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420426836115466/cat-SkcG9ENFf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420433585012746/cat-H1X0YEEYM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420439352049695/cat-rJgM0KN4tz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420448361283584/cat-B1-UAKVNYf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420450366423041/cat-H1bRtVEFG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420454078382084/cat-B1b0e9VNtG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420459140775940/cat-HJl_aYEEtz.png",
+               "https://media.discordapp.net/attachments/523354802437095424/523420464580919316/cat-rJxKMcENtM.png?width=841&height=474",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420468405862410/cat-Sytzc4VFG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420475016085504/cat-ryYCtNVKf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420482792456203/cat-HyGpgc44tG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420489641623552/cat-H1ylcNVFM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420493114638337/cat-S1WaFENFf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420499636912140/cat-Sk6lqENtG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420504963678209/cat-B1zQqNEKM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420511036899328/cat-S11CKNVtM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420516648878082/cat-Hy3xqE4Fz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420531551109120/cat-B1lPb5ENYz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420536278089739/cat-SkliTKNNFM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420541890330625/cat-SkgJ54VYG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420548970053651/cat-B1bT6FE4Kz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420558436597770/cat-ByRhtN4tM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420568796528641/cat-BJxS6YN4Kf.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420580486053908/cat-B1eM6YN4KG.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420593299652608/cat-Hytkq4NFM.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420635645607946/cat-BklC6KVNtz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420651583963146/cat-HJJQq4NKz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420640762658836/cat-BylnTKENKz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420677261361167/cat-SyDhtE4Yz.png",
+               "https://cdn.discordapp.com/attachments/523354802437095424/523420693057110016/cat-r1XIM5ENYM.png"]
+    content = [":cat: Don't be sad! This cat wants to play with you!", "You seem lonely,  Here, have a cat are you sad?.",";w; take a cat!, but enjoy!", "Weuf, woof, woooooooooof. Woof you.", "Pupper!", "Meow..."]
+    con = int(random.random() * len(content))
+    image = random.choice(choices)
+
+    embed = discord.Embed() 
+    embed.set_image(url=image)
+    await ctx.send(content=content[con],embed=embed)
+
+    
 @bot.command(pass_context = True, no_pm=True, name='wikipedia', aliases=['wiki', 'w'])
 async def wikipedia(ctx, *, query: str):
     """
@@ -1190,7 +1252,7 @@ async def help(ctx, val =None):
     if val is None:
         embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
-        embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile`''', inline=False)
+        embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `cat` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile` `shit`''', inline=False)
         embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `UrbanDictionary` `comic`''', inline=False)
         embed.add_field(name=' server :', value=f''' `Serverinfo` `invite` `avatar` `userinfo` `poll` `online` `mods`''', inline=False)
         embed.add_field(name=' Emotes :', value=f''' `customemojiinfo` `addemote` `removeemote` ''', inline=False)
