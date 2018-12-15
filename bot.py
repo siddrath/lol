@@ -303,12 +303,12 @@ async def say(ctx, *args):
     return await ctx.send(mesg)
 
 
-@bot.command(pass_context=True, no_pm=True)
+@bot.command(pass_context=True)
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def pepe(ctx, user: discord.Member = None):
     """kiss someone!"""
     user = user or ctx.message.author
 
-    pepe = "**  kissed you.{1}!**"
 
     choices = ["http://i.imgur.com/vpIyEue.png",
                "http://i.imgur.com/0koMC0v.jpg",
@@ -405,13 +405,13 @@ async def pepe(ctx, user: discord.Member = None):
 
     image = random.choice(choices)
 
-    embed = discord.Embed(description=f"""{user.name}""", colour=discord.Colour(0xba4b5b))
-    embed.add_field(name=' Random', value=f''' ~~pepe~~''', inline=False)
+    embed = discord.Embed()
     embed.set_image(url=image)
     await ctx.send(embed=embed)
-    
+
     
 @bot.command(pass_context=True)
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def cat(ctx, user: discord.Member = None):
     """kiss someone!"""
     user = user or ctx.message.author
@@ -825,15 +825,16 @@ async def unban(ctx, userid: int):
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def botinfo(ctx):
-    embed = discord.Embed(title="Team Rocket", description="Bot information", color=0xeee657)
+    embed = discord.Embed(title="Team Rocket", description="Bot information", color=discord.Colour.dark_red())
 
     # give info about you here
-    embed.add_field(name="isse#2508", value="Developer", inline=False)
+    embed.add_field(name="Garry#2508", value="Developer", inline=False)
 
     # Shows the number of servers the bot is member of.
     embed.add_field(name="Server count", value=f"{len(bot.guilds)}")
 
     embed.add_field(name="User Count", value=f"{len(bot.users)}")
+    embed.add_field(name="Bot Version", value=f"Alpha 0.01")
 
     embed.add_field(name="Discord Version", value=discord.__version__)
     mem = psutil.virtual_memory()
@@ -841,8 +842,8 @@ async def botinfo(ctx):
 
     embed.add_field(name="CPU Statistics", value=f"\nCPU Count **{psutil.cpu_count()}**\nRAM **{cmem} GB**")
     # give users a link to invite thsi bot to their server
-    embed.add_field(name="Invite", value="[Invite Me](https://discordapp.com/oauth2/authorize?client_id=486093523024609292&scope=bot&permissions=2146958591)")
-
+    embed.add_field(name="Invite", value="[Invite Me](https://discordapp.com/oauth2/authorize?client_id=481012071627096075&scope=bot&permissions=2146958847)")
+    embed.set_footer(text = "Made with python 3.6.6", icon_url = 'https://cdn.discordapp.com/emojis/490607334876381204.png?v=1')
     await ctx.send(embed=embed)
 
 
