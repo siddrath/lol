@@ -1253,8 +1253,8 @@ async def topservers(ctx, number : int = 10):
     """Lists the top servers I'm connected to ordered by population - default is 10, max is 50."""
         
 
-    if number > 60:
-        number = 60
+    if number > 50:
+        number = 50
     if number < 1:
         await ctx.channel.send('Oookay - look!  No servers!  Just like you wanted!')
         return
