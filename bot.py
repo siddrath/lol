@@ -1245,7 +1245,46 @@ async def createrole(ctx, colour: str, role_name:str=None):
     except TypeError:
         await ctx.send('Not in DM!')
     except discord.Forbidden:
-        await ctx.send('Can\'t do that!')           
+        await ctx.send('Can\'t do that!')   
+        
+
+@bot.command(pass_context=True)
+async def topservers(ctx, number : int = 10):
+    """Lists the top servers I'm connected to ordered by population - default is 10, max is 50."""
+        
+
+    if number > 60:
+        number = 60
+    if number < 1:
+        await ctx.channel.send('Oookay - look!  No servers!  Just like you wanted!')
+        return
+    serverList = []
+    for server in ctx.bot.guilds:
+        memberCount = 0
+        for member in server.members:
+            memberCount += 1
+        serverList.append({ 'Name' : server.name, 'Users' : memberCount })
+
+        # sort the servers by population
+    serverList = sorted(serverList, key=lambda x:int(x['Users']), reverse=True)
+
+    if number > len(serverList):
+        number = len(serverList)
+
+    i = 1
+    msg = ''
+    for server in serverList:
+        if i > number:
+            break
+        msg += '{}. *{}* - *{:,}* members\n'.format(i, server['Name'], server['Users'])
+        i += 1
+
+    if number < len(serverList):
+        msg = '__**Top {} of {} Servers:**__\n\n'.format(number, len(serverList))+msg
+    else:
+        msg = '__**Top {} Servers:**__\n\n'.format(len(serverList))+msg
+
+        await ctx.channel.send(msg)
 
 @bot.command(pass_context=True)
 async def help(ctx, val =None):
