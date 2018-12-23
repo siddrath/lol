@@ -1051,8 +1051,8 @@ async def customemojiinfo(ctx, *, emoji: discord.Emoji):
     await ctx.send(embed=embed) 
 
     
-@bot.command(pass_context = True, no_pm=True,name='ademote')
-async def addemote(ctx, name, url):
+@bot.command(pass_context = True, no_pm=True)
+async def ademote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
     
@@ -1068,8 +1068,8 @@ async def addemote(ctx, name, url):
         emoji = await ctx.guild.create_custom_emoji(name=name, image=response.content)
         await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
 
-@bot.command(pass_context = True, no_pm=True,name='remote')
-async def removeemote(ctx, name, url):
+@bot.command(pass_context = True, no_pm=True)
+async def remote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
         await ctx.message.delete()
