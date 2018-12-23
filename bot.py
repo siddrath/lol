@@ -1295,7 +1295,7 @@ async def help(ctx, val =None):
         embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `cat` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile` `shit`''', inline=False)
         embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `ud` `comic`''', inline=False)
         embed.add_field(name=' server :', value=f''' `Serverinfo` `invite` `avatar` `userinfo` `poll` `online` `mods`''', inline=False)
-        embed.add_field(name=' Emotes :', value=f''' `customemojiinfo` `addemote` `removeemote` ''', inline=False)
+        embed.add_field(name=' Emotes :', value=f''' `ceiinfo` `addemote` `rememote` ''', inline=False)
         embed.add_field(name=' moderation:', value=f''' `nicknames` `Ban` `hackban` `Unban` `Kick` `Warn` `roleinfo` `createrole` `addrole` `removerole` `prune` `purge` `pingrole` ''', inline=False)
         embed.add_field(name='Extra:', value=f''' `feedback` `say` `botinvite` `password` `reverse` `website` `upvote` ''', inline=False)
         embed.set_footer(text = "?help<command> for more help!", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
