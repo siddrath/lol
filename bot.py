@@ -1033,8 +1033,8 @@ async def editmessage(ctx, id:int, *, newmsg:str):
     await msg.edit(content=newmsg)
     await ctx.send("edit af")
   
-@bot.command(pass_context = True, no_pm=True, name='ceinfo')
-async def customemojiinfo(ctx, *, emoji: discord.Emoji):
+@bot.command(pass_context = True, no_pm=True)
+async def ceinfo(ctx, *, emoji: discord.Emoji):
     """Display information for a custom emoji.
 
     * emoji - The emoji to get information about."""
@@ -1052,7 +1052,7 @@ async def customemojiinfo(ctx, *, emoji: discord.Emoji):
 
     
 @bot.command(pass_context = True, no_pm=True)
-async def ademote(ctx, name, url):
+async def addemote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
     
@@ -1069,7 +1069,7 @@ async def ademote(ctx, name, url):
         await ctx.send("Successfully added the emoji {0.name} <:{0.name}:{0.id}>!".format(emoji))
 
 @bot.command(pass_context = True, no_pm=True)
-async def remote(ctx, name, url):
+async def rememote(ctx, name, url):
     if ctx.message.author.guild_permissions.manage_emojis:
 
         await ctx.message.delete()
@@ -1380,16 +1380,6 @@ async def help(ctx, val =None):
         embed = discord.Embed(title=f'''Customemoji command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="Allias", value="ceinfo or customemojiinfo ", inline=False)
         embed.add_field(name="usage", value="?ceinfo <emoji> ", inline=False)
-        embed.add_field(name="Example", value="?ud :hi:\n ?customemojiinfo :hi: ", inline=False)
-        embed.add_field(name="Note", value="it only info customemoji of bot running servers", inline=False)
-        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
-        embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
-        await ctx.send(embed=embed)
-
-    elif val == 'customemojiinfo':
-        embed = discord.Embed(title=f'''Customemoji command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
-        embed.add_field(name="Allias", value="ceinfo or customemojiinfo ", inline=False)
-        embed.add_field(name="usage", value="?ceinfo <emoji> ", inline=False)
         embed.add_field(name="Example", value="?ceinfo :hi:\n ?customemojiinfo :hi: ", inline=False)
         embed.add_field(name="Note", value="it only info customemoji not default discord emotes", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
@@ -1406,7 +1396,7 @@ async def help(ctx, val =None):
         embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         await ctx.send(embed=embed)
 
-    elif val == 'removeemote':
+    elif val == 'rememote':
         embed = discord.Embed(title=f'''Remove emote command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="Allias", value="removeemote or remote ", inline=False)
         embed.add_field(name="usage", value="?remote <name> <url> ", inline=False)
