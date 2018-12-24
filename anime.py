@@ -6,7 +6,7 @@ from discord.ext import commands
 import html
 import re
 
-class Kitsu:
+class Kitsu():
 	def __init__(self, bot):
 		self.bot = bot
 
@@ -16,7 +16,7 @@ class Kitsu:
 		if ctx.invoked_subcommand is None:
 			await ctx.send('That command does not exist in this group')
 
-	@kitsu.command(pass_context=True)
+	@commands.command(pass_context=True)
 	async def anime(self, ctx):
 		""" Find anime on Kitsu by given name
 		
@@ -83,7 +83,7 @@ class Kitsu:
 			icon_url='https://pbs.twimg.com/profile_images/807964865511862278/pIYOVdsl.jpg'
 		))
 
-	@kitsu.command(pass_context=True)
+	@commands.command(pass_context=True)
 	async def manga(self, ctx):
 		""" Find manga on kitsu by given name
 		
