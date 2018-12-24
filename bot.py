@@ -1249,9 +1249,10 @@ async def anime(ctx):
     ~kitsu anime Toradora!
         
     """
+
     name = ctx.message.content.split(" ")[1:]
     if not name:
-        return await ctx.send("No anime specified")
+        return await ctx.send("Usage: `{}anime Toradora`".format(ctx.prefix))
         
     url = 'https://kitsu.io/api/edge/anime'
     params = {'filter[text]': name}
@@ -1318,7 +1319,7 @@ async def manga(ctx):
     """
     name = ctx.message.content.split(" ")[1:]
     if not name:
-        return await ctx.send("No manga specified")
+        return await ctx.send("Usage: `{}manga Sakurasou no pet na Kanojo`".format(ctx.prefix))
 
         
     url = 'https://kitsu.io/api/edge/manga'
@@ -1375,6 +1376,7 @@ async def manga(ctx):
         text='\u200b',
         icon_url='https://images-ext-2.discordapp.net/external/7fGWDNRYNWSRnrCuuAg3NKqv2UeDia060r9kl8cM7BM/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?width=473&height=473'
     ))
+
 
         
 
