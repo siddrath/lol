@@ -18,6 +18,7 @@ import secrets
 from bs4 import BeautifulSoup
 datetime_format = '%Y-%m-%d %I:%M %p UTC'
 blurple = discord.Color.blurple()
+import html
 
 
 
@@ -285,14 +286,7 @@ class BAdmin():
             await ctx.send(f'''{ctx.author.mention} you aren't eligible for this''', delete_after=3)
 
 
-@bot.command(hidden = True)
-async def code(ctx, command):
-        ''': getting the code for command'''
 
-        a = inspect.getsource(bot.get_command(command).callback)
-        embed = discord.Embed(title='Code', description="```py\n"+a+"```",color=discord.Colour.dark_purple())
-        embed.set_thumbnail(url='https://scontent.fdel3-1.fna.fbcdn.net/v/t1.0-9/20155639_1952222755056855_6450365686627691750_n.png?oh=0b2c4ecd1409396b05f71c31dd07dd2d&oe=5AE7B998')
-        await ctx.send(embed=embed)
 
 
 @bot.command(pass_context = True, no_pm=True)
@@ -1247,6 +1241,142 @@ async def createrole(ctx, colour: str, role_name:str=None):
     except discord.Forbidden:
         await ctx.send('Can\'t do that!')   
         
+@bot.command(pass_context=True)
+async def anime(ctx):
+    """ Find anime on Kitsu by given name
+        
+    **Example**:
+    ~kitsu anime Toradora!
+        
+    """
+    name = ctx.message.content.split(" ")[1:]
+    if not name:
+        return await ctx.send("No anime specified")
+        
+    url = 'https://kitsu.io/api/edge/anime'
+    params = {'filter[text]': name}
+        
+    with requests.get(url, params=params) as resp:
+        resp = resp.json()['data']
+        if not resp:
+            return await ctx.send("Anime not found")
+
+    anime = resp[0]
+ 
+    synopsis = html.unescape(anime['attributes']['synopsis'])
+    synopsis = re.sub(r'<.*?>', '', synopsis)
+    synopsis = synopsis.replace('[Written by MAL Rewrite]', '')
+    synopsis = synopsis[0:425] + '...'
+    url = f'https://kitsu.io/anime/{anime["id"]}'
+
+    genreurl = anime['relationships']['genres']['links']['related']
+    genres = []
+    with requests.get(genreurl) as resp:
+        for item in resp.json()['data']:
+            genres.append(item['attributes']['name'])
+
+    genres = ", ".join(genres)
+
+    await ctx.send(embed=discord.Embed(
+        colour=discord.Colour.red(), 
+        url=url
+    ).set_thumbnail(
+        url=anime['attributes']['posterImage']['small']
+    ).set_author(
+        name=anime['attributes']['titles']['en_jp'],
+        icon_url=anime['attributes']['posterImage']['small']
+    ).add_field(
+        name='Community approval',
+        value=anime['attributes']['averageRating']
+    ).add_field(
+        name='Episodes',
+        value=anime['attributes']['episodeCount']
+    ).add_field(
+        name='Status',
+        value=anime['attributes']['status']
+    ).add_field(
+        name='Type',
+        value=anime['attributes']['showType']
+    ).add_field(
+        name='Genres',
+        value=genres
+    ).add_field(
+        name="Description",
+        value=synopsis
+    ).set_footer(
+        text='\u200b',
+        icon_url='https://images-ext-2.discordapp.net/external/7fGWDNRYNWSRnrCuuAg3NKqv2UeDia060r9kl8cM7BM/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?width=473&height=473'
+    ))
+
+@bot.command(pass_context=True)
+async def manga(ctx):
+    """ Find manga on kitsu by given name
+        
+    **Example**:
+    ~kitsu manga Sakurasou no pet na Kanojo
+        
+    """
+    name = ctx.message.content.split(" ")[1:]
+    if not name:
+        return await ctx.send("No manga specified")
+
+        
+    url = 'https://kitsu.io/api/edge/manga'
+    params = {'filter[text]': name}
+        
+    with requests.get(url, params=params) as resp:
+        resp = resp.json()['data']
+        if not resp:
+            return await ctx.send("Manga not found")
+
+    manga = resp[0]
+
+    synopsis = html.unescape(manga['attributes']['synopsis'])
+    synopsis = re.sub(r'<.*?>', '', synopsis)
+    synopsis = synopsis.replace('[Written by MAL Rewrite]', '')
+    synopsis = synopsis[0:425] + '...'
+    url = f'https://kitsu.io/manga/{manga["id"]}'
+
+    genreurl = manga['relationships']['genres']['links']['related']
+    genres = []
+    with requests.get(genreurl) as resp:
+        for item in resp.json()['data']:
+            genres.append(item['attributes']['name'])
+
+    genres = ", ".join(genres)
+
+    await ctx.send(embed=discord.Embed(
+        colour=discord.Colour.red(), 
+        url=url
+    ).set_thumbnail(
+        url=manga['attributes']['posterImage']['small']
+    ).set_author(
+        name=manga['attributes']['titles']['en_jp'],
+        icon_url=manga['attributes']['posterImage']['small']
+    ).add_field(
+        name='Community approval',
+        value=manga['attributes']['averageRating']
+    ).add_field(
+        name='Chapters',
+        value=manga['attributes']['chapterCount']
+    ).add_field(
+        name='Status',
+        value=manga['attributes']['status']
+    ).add_field(
+        name='Type',
+        value=manga['type']
+    ).add_field(
+        name='Genres',
+        value=genres
+    ).add_field(
+        name="Description",
+        value=synopsis
+    ).set_footer(
+        text='\u200b',
+        icon_url='https://images-ext-2.discordapp.net/external/7fGWDNRYNWSRnrCuuAg3NKqv2UeDia060r9kl8cM7BM/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?width=473&height=473'
+    ))
+
+        
 
 @bot.command(pass_context=True)
 async def topservers(ctx, number : int = 10):
@@ -1293,7 +1423,7 @@ async def help(ctx, val =None):
         embed = discord.Embed(title=f'''commands''', description=f'''bot prefix : ? ''',color=discord.Colour(0x69FCFC))
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
         embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `cat` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile` `shit`''', inline=False)
-        embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `ud` `comic`''', inline=False)
+        embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `ud` `comic` `anime` `manga`''', inline=False)
         embed.add_field(name=' server :', value=f''' `Serverinfo` `invite` `avatar` `userinfo` `poll` `online` `mods`''', inline=False)
         embed.add_field(name=' Emotes :', value=f''' `ceiinfo` `addemote` `rememote` ''', inline=False)
         embed.add_field(name=' moderation:', value=f''' `nicknames` `Ban` `hackban` `Unban` `Kick` `Warn` `roleinfo` `createrole` `addrole` `removerole` `prune` `purge` `pingrole` ''', inline=False)
