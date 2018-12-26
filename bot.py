@@ -858,7 +858,7 @@ async def rps(ctx, choice):
     choices = ["rock", "paper", "scissors"]
     await ctx.send("You chose {} | CPU chose {}".format(choice, random.choice(choices)))
     
-@bot.command(pass_context=True, no_pm=True)
+@bot.command(pass_context=True)
 async def ud(ctx, *, msg):
     """Pull data from Urban Dictionary. Use >help ud for more information.
     Usage: >ud <term> - Search for a term on Urban Dictionary.
@@ -884,14 +884,17 @@ async def ud(ctx, *, msg):
             if result == "tags":
                 embed.add_field(name="Tags:", value=" ".join(result["tags"]))
             embed.set_author(name=top_result["author"],
-                                icon_url="https://lh5.ggpht.com/oJ67p2f1o35dzQQ9fVMdGRtA7jKQdxUFSQ7vYstyqTp-Xh-H5BAN4T5_abmev3kz55GH=w300")
+                                icon_url="https://cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?size=1024")
             number = str(int(number) + 1)
             embed.set_footer(text="{} results were found. To see a different result, use ?ud {} {}.".format(
                 len(result["list"]), msg, number))
             await ctx.send("", embed=embed)
         except IndexError:
             await ctx.send( "That result doesn't exist! Try ?ud {}.".format(msg))
-            
+
+        except Exception as e:
+            await ctx.send(e)
+
 @bot.command(pass_context=True, no_pm=True, name='yt')
 async def youtube(ctx, *, query: str):
     """Search on Youtube"""
@@ -1427,7 +1430,7 @@ async def help(ctx, val =None):
         embed.add_field(name='Fun Commands :', value=f'''`howhot` ` bet` `neko` `cat` `dog` `pepe` `rps` `8ball` `bite` `cuddle` `poke` `kiss` `love` `pat` `slap` `wanted` `profile` `shit`''', inline=False)
         embed.add_field(name='search :', value=f''' `youtube` `wikipedia` `ud` `comic` `anime` `manga`''', inline=False)
         embed.add_field(name=' server :', value=f''' `Serverinfo` `invite` `avatar` `userinfo` `poll` `online` `mods`''', inline=False)
-        embed.add_field(name=' Emotes :', value=f''' `ceiinfo` `addemote` `rememote` ''', inline=False)
+        embed.add_field(name=' Emotes :', value=f''' `ceinfo` `addemote` `rememote` ''', inline=False)
         embed.add_field(name=' moderation:', value=f''' `nicknames` `Ban` `hackban` `Unban` `Kick` `Warn` `roleinfo` `createrole` `addrole` `removerole` `prune` `purge` `pingrole` ''', inline=False)
         embed.add_field(name='Extra:', value=f''' `feedback` `say` `botinvite` `password` `reverse` `website` `upvote` ''', inline=False)
         embed.set_footer(text = "?help<command> for more help!", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
@@ -1491,7 +1494,7 @@ async def help(ctx, val =None):
         embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         await ctx.send(embed=embed)
 
-    elif val == 'urbandictionary':
+    elif val == 'ud':
         embed = discord.Embed(title=f'''Urbandictionary command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="Allias", value="ud or urbandictionary ", inline=False)
         embed.add_field(name="usage", value="?ud <word> ", inline=False)
@@ -1508,7 +1511,7 @@ async def help(ctx, val =None):
         embed.set_footer(text = "?help <command>to get more help", icon_url = 'https://images-ext-1.discordapp.net/external/LVSBex7pO3PGD7jRP42QT80UTPANLaYV-eEcy3gL-wY/https/cdn.nekos.life/neko/neko_004.png?width=334&height=473')
         await ctx.send(embed=embed)
 
-    elif val == 'customemojiinfo':
+    elif val == 'ceinfo':
         embed = discord.Embed(title=f'''Customemoji command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
         embed.add_field(name="Allias", value="ceinfo or customemojiinfo ", inline=False)
         embed.add_field(name="usage", value="?ceinfo <emoji> ", inline=False)
