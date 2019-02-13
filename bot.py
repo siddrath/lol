@@ -529,7 +529,7 @@ async def userinfo(ctx, *, member: discord.Member = None):
 
 @bot.command(pass_context = True, no_pm=True)
 async def feedback(ctx, * , feedback):
-    channel = bot.get_channel(519136306853314560)
+    channel = bot.get_channel(545314411435524107)
     embed = discord.Embed(title="Feedback Submission :robot:", colour=discord.Colour.red(), description=f'''Submitted by- {ctx.author}''')
     embed.add_field(name="Feedback", value=feedback, inline=False)
     embed.set_footer(text=f"From {ctx.guild.name} ({ctx.guild.id})")
@@ -819,10 +819,10 @@ async def unban(ctx, userid: int):
 @bot.command()
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def botinfo(ctx):
-    embed = discord.Embed(title="Team Rocket", description="Bot information", color=discord.Colour.dark_red())
+    embed = discord.Embed(title="Touka", description="Bot information", color=discord.Colour.dark_red())
 
     # give info about you here
-    embed.add_field(name="Garry#2508", value="Developer", inline=False)
+    embed.add_field(name="Garry#3723", value="Developer", inline=False)
 
     # Shows the number of servers the bot is member of.
     embed.add_field(name="Server count", value=f"{len(bot.guilds)}")
@@ -1139,7 +1139,7 @@ async def upvote(ctx):
     embed = discord.Embed(title="Upvote the Bot Here!")
     embed.add_field(name="You haven't upvoted?", value="If you have not upvoted")
     embed.add_field(name="Upvote Touka Here! ", value="[Upvote Touka](https://discordbots.org/bot/486093523024609292/vote)")
-    embed.set_footer(text = "Made by garry#2508", icon_url = 'https://cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?size=1024')
+    embed.set_footer(text = "Made by garry#3723", icon_url = 'https://cdn.discordapp.com/avatars/486093523024609292/3473b7f51092af6f4656bf9abed80d6c.webp?size=1024')
     await ctx.send(embed=embed)
     
 @bot.command(name="pg")
@@ -1523,7 +1523,7 @@ async def help(ctx, val =None):
 
     elif val == 'addemote':
         embed = discord.Embed(title=f'''Add emote command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
-        embed.add_field(name="Allias", value="addemote or ademote ", inline=False)
+        embed.add_field(name="Allias", value="addemote", inline=False)
         embed.add_field(name="usage", value="?addemote <name> <url> ", inline=False)
         embed.add_field(name="Example", value="?addemote hi https://cdn.discordapp.com/emojis/490837341296918529.png\n ", inline=False)
         embed.add_field(name="Note", value="only png and jpg format is supported", inline=False)
@@ -1533,7 +1533,7 @@ async def help(ctx, val =None):
 
     elif val == 'rememote':
         embed = discord.Embed(title=f'''Remove emote command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
-        embed.add_field(name="Allias", value="removeemote or remote ", inline=False)
+        embed.add_field(name="Allias", value="remote ", inline=False)
         embed.add_field(name="usage", value="?remote <name> <url> ", inline=False)
         embed.add_field(name="Example", value="?remote hi https://cdn.discordapp.com/emojis/490837341296918529.png\n ", inline=False)
         embed.add_field(name="Note", value="remove :hi:, should be hi", inline=False)
