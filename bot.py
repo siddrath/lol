@@ -19,6 +19,8 @@ from bs4 import BeautifulSoup
 datetime_format = '%Y-%m-%d %I:%M %p UTC'
 blurple = discord.Color.blurple()
 import html
+from utils import checks
+from utils.language import Language
 
 
 
@@ -1550,7 +1552,12 @@ async def help(ctx, val =None):
         await ctx.send(embed=embed)
 
 
-    
+@commands.guild_only()
+@checks.server_mod_or_perms(manage_server=True)
+@bot.command()
+async def setlanguage(ctx, language:str):
+    """Sets the bot's language for the server"""
+    await ctx.send(Language.set_language(ctx.guild, language))    
     
 @bot.command(hidden=True)
 async def reload(ctx, extension):
