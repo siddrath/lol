@@ -1,5 +1,4 @@
 import json
-import traceback
 
 file_path = "data/languages.json"
 
