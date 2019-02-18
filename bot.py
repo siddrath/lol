@@ -1533,8 +1533,8 @@ async def help(ctx, val =None):
 
     elif val == 'rememote':
         embed = discord.Embed(title=f'''Remove emote command''', description=f'''prefix : ?''',color=discord.Colour(0x69FCFC))
-        embed.add_field(name="Allias", value="remote ", inline=False)
-        embed.add_field(name="usage", value="?remote <name> <url> ", inline=False)
+        embed.add_field(name="Allias", value="rememote ", inline=False)
+        embed.add_field(name="usage", value="?rememote <name> <url> ", inline=False)
         embed.add_field(name="Example", value="?remote hi https://cdn.discordapp.com/emojis/490837341296918529.png\n ", inline=False)
         embed.add_field(name="Note", value="remove :hi:, should be hi", inline=False)
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/494722737420500993/521947092625915948/neko292.jpg')
